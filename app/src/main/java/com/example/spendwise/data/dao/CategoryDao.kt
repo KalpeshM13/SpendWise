@@ -16,6 +16,14 @@ interface CategoryDao {
     @Query("SELECT * FROM categories WHERE type = :type")
     fun getCategoryByType(type: TransactionsType): Flow<List<Category>>
 
+    @Query("""
+        SELECT category, SUM(amount) as total
+        FROM transactions
+        WHERE type = :type AND date >= :startDate
+        GROUP BY category
+    """)
+    fun getCategoryTotal(type: TransactionsType, startDate: Long = 0): Flow<Map<String, Double>>
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(category: Category)
 }
