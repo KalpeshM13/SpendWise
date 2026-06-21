@@ -14,7 +14,7 @@ class SpendwiseRepo(
     val allCategories = categoryDao.getAllCategories()
 
     fun getTransactionByType(type: TransactionsType) = transactionDao.getTransactionsByType(type)
-    fun getCategoriesByType(type: TransactionsType) = categoryDao.getCategoryByType(type)
+    fun getCategoriesByType(type: TransactionsType) = categoryDao.getCategoriesByType(type)
     fun getCategoryTotal(type: TransactionsType, startDate: Long = 0) = transactionDao.getCategoryTotal(type, startDate)
 
     suspend fun getTotalByType(type: TransactionsType) = transactionDao.getTotalByType(type) ?: 0.0

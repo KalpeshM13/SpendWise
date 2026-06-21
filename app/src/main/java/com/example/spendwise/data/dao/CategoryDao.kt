@@ -5,6 +5,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.example.spendwise.data.models.Category
+import com.example.spendwise.data.models.CategoryTotal
 import com.example.spendwise.data.models.TransactionsType
 import kotlinx.coroutines.flow.Flow
 
@@ -14,15 +15,16 @@ interface CategoryDao {
     fun getAllCategories(): Flow<List<Category>>
 
     @Query("SELECT * FROM categories WHERE type = :type")
-    fun getCategoryByType(type: TransactionsType): Flow<List<Category>>
+    fun getCategoriesByType(type: TransactionsType): Flow<List<Category>>
 
     @Query("""
-        SELECT category, SUM(amount) as total
-        FROM transactions
-        WHERE type = :type AND date >= :startDate
-        GROUP BY category
+        SELECT c.name as categoryName, COALESCE(SUM(t.amount), 0.0) as totalAmount
+        FROM categories c
+        LEFT JOIN transactions t ON c.name = t.category
+        WHERE c.type = :type AND (t.date >= :startDate OR t.date IS NULL)
+        GROUP BY c.name
     """)
-    fun getCategoryTotal(type: TransactionsType, startDate: Long = 0): Flow<Map<String, Double>>
+    fun getCategoryTotal(type: TransactionsType, startDate: Long = 0): Flow<List<CategoryTotal>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(category: Category)

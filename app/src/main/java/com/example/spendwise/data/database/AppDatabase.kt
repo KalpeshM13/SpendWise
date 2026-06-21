@@ -14,11 +14,14 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import androidx.core.graphics.toColorInt
+import androidx.room.TypeConverters
 
 @Database(
     entities = [Transaction::class, Category::class],
-    version = 1
+    version = 1,
+    exportSchema = false
 )
+@TypeConverters(TransactionTypeConverter::class)
 abstract class AppDatabase: RoomDatabase() {
     abstract fun transactionDao(): TransactionDao
     abstract fun categoryDao(): CategoryDao
