@@ -6,8 +6,8 @@ import java.util.Date
 import java.util.Locale
 
 object DateFormatter {
-    private val fullFormatter = SimpleDateFormat("dd MM yyyy", Locale.getDefault())
-    private val shortFormatter = SimpleDateFormat("dd MM", Locale.getDefault())
+    private val fullFormatter = SimpleDateFormat("MMMM dd yyyy", Locale.getDefault())
+    private val shortFormatter = SimpleDateFormat("MMM dd", Locale.getDefault())
 
     fun formatFull(timestamp: Long): String {
         return fullFormatter.format(Date(timestamp))
