@@ -41,4 +41,10 @@ class TransactionsViewModel(application: Application) : AndroidViewModel(applica
             repository.deleteTransaction(transaction)
         }
     }
+
+    fun insertTransaction(transaction: Transaction) {
+        viewModelScope.launch {
+            repository.addTransaction(transaction)
+        }
+    }
 }

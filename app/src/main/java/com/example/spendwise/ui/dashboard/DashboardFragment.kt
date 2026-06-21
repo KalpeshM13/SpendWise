@@ -57,7 +57,7 @@ class DashboardFragment : Fragment() {
             setEntryLabelColor(Color.WHITE)
             setEntryLabelTextSize(12f)
             setDrawEntryLabels(false)
-
+            isRotationEnabled = false
 
             legend.apply {
                 isEnabled = true
@@ -95,7 +95,12 @@ class DashboardFragment : Fragment() {
     }
 
     private fun updatePieChart(categories: List<ExpenseCategoryData>) {
-        if(categories.isEmpty()) return
+        if (categories.isEmpty()) {
+            binding.pieChart.data = null
+            binding.pieChart.clear()
+            binding.pieChart.invalidate()
+            return
+        }
 
         val entries = categories.map{category ->
             PieEntry(category.amount.toFloat(), category.category)
@@ -103,8 +108,8 @@ class DashboardFragment : Fragment() {
 
         val colors = listOf(
             Color.rgb(193, 37, 82),
-            Color.rgb(255, 102, 0),
             Color.rgb(245, 199, 0),
+            Color.rgb(255, 102, 0),
             Color.rgb(179, 48, 80),
             Color.rgb(64, 89, 120),
             Color.rgb(149, 165, 124),
@@ -123,6 +128,7 @@ class DashboardFragment : Fragment() {
         val pieData = PieData(dataset)
         binding.pieChart.apply {
             data = pieData
+            notifyDataSetChanged()
             invalidate()
         }
     }

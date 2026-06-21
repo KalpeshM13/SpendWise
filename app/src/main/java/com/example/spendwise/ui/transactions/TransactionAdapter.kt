@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.spendwise.R
 import com.example.spendwise.data.models.Transaction
 import com.example.spendwise.data.models.TransactionsType
 import com.example.spendwise.databinding.ItemTransactionsBinding
@@ -56,6 +57,19 @@ class TransactionAdapter(
                         }
                     )
                 )
+
+                val categoryIconRes = when (transaction.category) {
+                    "Food & Dining"     -> R.drawable.dining_24px
+                    "Transportation"    -> R.drawable.train_car
+                    "Shopping"          -> R.drawable.shopping_cart_24px
+                    "Bills & Utilities" -> R.drawable.calculator_bill_24
+                    "Healthcare"        -> R.drawable.first_aid_kit_24
+                    "Salary"            -> R.drawable.user_salary_24
+                    "Freelance"         -> R.drawable.freelance_24
+                    "Investments"       -> R.drawable.invest_24
+                    else                -> R.drawable.category_24px
+                }
+                categoryImage.setImageResource(categoryIconRes)
             }
         }
     }

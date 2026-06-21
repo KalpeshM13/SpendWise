@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.EditText
+import android.widget.FrameLayout
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -14,10 +16,10 @@ import com.example.spendwise.data.models.Transaction
 import com.example.spendwise.data.models.TransactionsType
 import com.example.spendwise.databinding.FragmentAddTransactionDialogBinding
 import com.example.spendwise.ui.viewModel.SpendwiseViewModel
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.tabs.TabLayout
-import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.coroutines.launch
-import kotlin.toString
+import androidx.core.graphics.toColorInt
 
 class AddTransactionDialog : DialogFragment() {
     private var _binding: FragmentAddTransactionDialogBinding? = null
@@ -27,11 +29,13 @@ class AddTransactionDialog : DialogFragment() {
     private var currentType = TransactionsType.EXPENSE
     private var categories = listOf<Category>()
 
+    // Sentinel label shown as the last item in the dropdown
+    private val ADD_CUSTOM_LABEL = "＋ Add Custom Category…"
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout for this fragment
         _binding = FragmentAddTransactionDialogBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -48,9 +52,9 @@ class AddTransactionDialog : DialogFragment() {
     }
 
     private fun setupTypeSelection() {
-        binding.typeTabLayout.addOnTabSelectedListener(object: TabLayout.OnTabSelectedListener {
+        binding.typeTabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab?) {
-                currentType = when(tab?.position) {
+                currentType = when (tab?.position) {
                     0 -> TransactionsType.EXPENSE
                     1 -> TransactionsType.INCOME
                     else -> TransactionsType.EXPENSE
@@ -70,11 +74,59 @@ class AddTransactionDialog : DialogFragment() {
             mutableListOf()
         )
         binding.spinnerCategory.setAdapter(adapter)
+
+        // Intercept item clicks to detect the sentinel "Add Custom Category…" option
+        binding.spinnerCategory.setOnItemClickListener { _, _, position, _ ->
+            val adapter = binding.spinnerCategory.adapter
+            if (adapter != null && position == adapter.count - 1) {
+                // The last item is our sentinel — clear the field and show the input dialog
+                binding.spinnerCategory.setText("", false)
+                showAddCustomCategoryDialog()
+            }
+        }
+    }
+
+    private fun showAddCustomCategoryDialog() {
+        val editText = EditText(requireContext()).apply {
+            hint = "Category name"
+            setSingleLine()
+        }
+
+        // Wrap with padding so it sits nicely inside the dialog
+        val container = FrameLayout(requireContext()).apply {
+            val paddingPx = (16 * resources.displayMetrics.density).toInt()
+            setPadding(paddingPx, paddingPx / 2, paddingPx, 0)
+            addView(editText)
+        }
+
+        MaterialAlertDialogBuilder(requireContext())
+            .setTitle("Add Custom Category")
+            .setMessage("Enter a name for the new category. It will be saved for future use.")
+            .setView(container)
+            .setPositiveButton("Add") { _, _ ->
+                val name = editText.text.toString().trim()
+                if (name.isNotEmpty()) {
+                    saveCustomCategory(name)
+                }
+            }
+            .setNegativeButton(getString(R.string.cancel), null)
+            .show()
+    }
+
+    private fun saveCustomCategory(name: String) {
+        val newCategory = Category(
+            name = name,
+            type = currentType,
+            color = "#2196F3".toColorInt()
+        )
+        viewModel.addCategory(newCategory)
+
+        binding.spinnerCategory.setText(name, false)
     }
 
     private fun setupButtons() {
         binding.saveButton.setOnClickListener {
-            if(validateInput()) {
+            if (validateInput()) {
                 saveTransaction()
                 dismiss()
             }
@@ -95,10 +147,14 @@ class AddTransactionDialog : DialogFragment() {
     }
 
     private fun updateCategorySpinner() {
+        // Build the display list: real category names + the "Add Custom" sentinel at the end
+        val displayItems = categories.map { it.name }.toMutableList()
+        displayItems.add(ADD_CUSTOM_LABEL)
+
         val adapter = ArrayAdapter(
             requireActivity(),
             android.R.layout.simple_dropdown_item_1line,
-            categories.map { it.name }
+            displayItems
         )
         binding.spinnerCategory.setAdapter(adapter)
     }
@@ -128,18 +184,19 @@ class AddTransactionDialog : DialogFragment() {
         var isValid = true
 
         val amount = binding.etAmount.text.toString()
-        if(amount.isEmpty() || amount.toDoubleOrNull() == null) {
+        if (amount.isEmpty() || amount.toDoubleOrNull() == null) {
             binding.etAmount.error = getString(R.string.error_invalid_amount)
             isValid = false
         }
 
-        if(binding.etDescription.text.toString().isEmpty()) {
+        if (binding.etDescription.text.toString().isEmpty()) {
             binding.etDescription.error = "Empty Description"
             isValid = false
         }
 
-        if(binding.spinnerCategory.text.toString().isEmpty()) {
-            binding.spinnerCategory.error = "Please Select a Category"
+        val selectedCategory = binding.spinnerCategory.text.toString()
+        if (selectedCategory.isEmpty() || selectedCategory == ADD_CUSTOM_LABEL) {
+            binding.spinnerCategory.error = "Please select or add a category"
             isValid = false
         }
 

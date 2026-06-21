@@ -12,6 +12,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <ImageView
+            android:id="@+id/categoryImage"
+            android:src="@drawable/category_24px"
+            android:padding="8dp"
+            app:tint="@color/black"
+            android:layout_gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="0dp"

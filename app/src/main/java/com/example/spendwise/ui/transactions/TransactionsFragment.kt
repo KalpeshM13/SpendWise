@@ -87,7 +87,9 @@ class TransactionsFragment : Fragment() {
     }
 
     private fun showTransactionDetails(transaction: Transaction) {
-
+        TransactionDetailFragment
+            .newInstance(transaction)
+            .show(childFragmentManager, "TransactionDetail")
     }
 
     override fun onDestroyView() {
