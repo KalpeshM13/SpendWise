@@ -102,14 +102,14 @@ class DashboardFragment : Fragment() {
         }
 
         val colors = listOf(
+            Color.rgb(193, 37, 82),
+            Color.rgb(255, 102, 0),
+            Color.rgb(245, 199, 0),
+            Color.rgb(179, 48, 80),
             Color.rgb(64, 89, 120),
             Color.rgb(149, 165, 124),
             Color.rgb(217, 184, 162),
-            Color.rgb(191, 134, 134),
-            Color.rgb(179, 48, 80),
-            Color.rgb(193, 37, 82),
-            Color.rgb(255, 102, 0),
-            Color.rgb(245, 199, 0)
+            Color.rgb(191, 134, 134)
         )
 
         val dataset = PieDataSet(entries,"Expense Categories").apply {

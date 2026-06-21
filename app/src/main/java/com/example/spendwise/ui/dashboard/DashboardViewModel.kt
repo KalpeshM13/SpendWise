@@ -2,7 +2,6 @@ package com.example.spendwise.ui.dashboard
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.spendwise.data.database.AppDatabase
 import com.example.spendwise.data.models.CategoryTotal
@@ -13,9 +12,7 @@ import com.example.spendwise.data.repository.SpendwiseRepo
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
-import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.stateIn
-import kotlin.math.exp
 
 class DashboardViewModel(application: Application) : AndroidViewModel(application) {
     private val repository: SpendwiseRepo = SpendwiseRepo(
@@ -24,8 +21,8 @@ class DashboardViewModel(application: Application) : AndroidViewModel(applicatio
     )
 
     val dashboardState: StateFlow<DashboardState> = combine(
-        flow { emit(repository.getTotalByType(TransactionsType.INCOME)) },
-        flow { emit(repository.getTotalByType(TransactionsType.EXPENSE)) },
+        repository.getTotalByType(TransactionsType.INCOME),
+        repository.getTotalByType(TransactionsType.EXPENSE),
         repository.getCategoryTotal(TransactionsType.EXPENSE)
     ) { income: Double, expense: Double, categoryTotals: List<CategoryTotal> ->
         DashboardState(
@@ -34,8 +31,8 @@ class DashboardViewModel(application: Application) : AndroidViewModel(applicatio
             balance = income-expense,
             expenseCategories = categoryTotals.map { categoryTotal ->
                 ExpenseCategoryData(
-                    category = categoryTotal.name,
-                    amount = categoryTotal.total
+                    category = categoryTotal.categoryName,
+                    amount = categoryTotal.totalAmount
                 )
             }
         )
