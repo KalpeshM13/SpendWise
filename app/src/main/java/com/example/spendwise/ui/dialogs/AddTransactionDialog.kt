@@ -31,7 +31,7 @@ class AddTransactionDialog : DialogFragment() {
     private var currentType = TransactionsType.EXPENSE
     private var categories = listOf<Category>()
 
-    private val AddCustomLabel = "＋ Add Custom Category…"
+    private val addCustomLabel = "＋ Add Custom Category…"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -171,7 +171,7 @@ class AddTransactionDialog : DialogFragment() {
 
     private fun updateCategorySpinner() {
         val displayItems = categories.map { it.name }.toMutableList()
-        displayItems.add(AddCustomLabel)
+        displayItems.add(addCustomLabel)
 
         val adapter = ArrayAdapter(
             requireActivity(),
@@ -217,7 +217,7 @@ class AddTransactionDialog : DialogFragment() {
         }
 
         val selectedCategory = binding.spinnerCategory.text.toString()
-        if (selectedCategory.isEmpty() || selectedCategory == AddCustomLabel) {
+        if (selectedCategory.isEmpty() || selectedCategory == addCustomLabel) {
             binding.spinnerCategory.error = "Please select or add a category"
             isValid = false
         }
