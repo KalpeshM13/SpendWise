@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">SpendWise</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="income">Income</string>
     <string name="expense">Expense</string>
     <string name="all">All</string>
@@ -8,18 +7,15 @@
     <!--    Navigation Related-->
     <string name="tab_dashboard">Dashboard</string>
     <string name="tab_transactions">Transactions</string>
-    <string name="tab_categories">Categories</string>
 
     <!--    Dashboard Strings-->
     <string name="current_balance">Current Balance</string>
     <string name="total_income">Total Income</string>
     <string name="total_expense">Total Expense</string>
     <string name="expense_breakdown">Expense Breakdown</string>
-    <string name="monthly_overview">Monthly Overview</string>
 
     <!--    Transaction Related-->
     <string name="add_transaction">Add Transaction</string>
-    <string name="edit_transaction">Edit Transaction</string>
     <string name="delete_transaction">Delete Transaction</string>
     <string name="amount">Amount</string>
     <string name="category">Category</string>
@@ -28,19 +24,12 @@
     <string name="description">Description</string>
 
     <!--    Category Related-->
-    <string name="add_category">Add Category</string>
-    <string name="edit_category">Edit Category</string>
-    <string name="delete_category">Delete Category</string>
 
     <!--    Dialog Buttons-->
     <string name="cancel">Cancel</string>
     <string name="save">Save</string>
-    <string name="confirm">Confirm</string>
-    <string name="delete">Delete</string>
 
     <!--    Error Messages-->
-    <string name="error_amount_required">Amount is required</string>
-    <string name="error_category_required">Category is required</string>
     <string name="error_invalid_amount">Invalid Amount</string>
     <string name="transaction_details">Transaction Details</string>
     <string name="new_transaction">New Transaction</string>

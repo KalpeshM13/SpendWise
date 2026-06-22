@@ -26,6 +26,7 @@
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:background="@drawable/bg_icon_container"
+            android:contentDescription="@string/category"
             android:padding="12dp"
             android:src="@drawable/category_24px"
             app:tint="@color/brand_primary" />

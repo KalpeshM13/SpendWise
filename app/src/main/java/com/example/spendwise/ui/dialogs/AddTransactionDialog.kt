@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.EditText
 import android.widget.FrameLayout
+import androidx.core.graphics.toColorInt
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -20,7 +21,6 @@ import com.example.spendwise.ui.viewModel.SpendwiseViewModel
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.tabs.TabLayout
 import kotlinx.coroutines.launch
-import androidx.core.graphics.toColorInt
 
 class AddTransactionDialog : DialogFragment() {
     private var _binding: FragmentAddTransactionDialogBinding? = null
@@ -31,7 +31,7 @@ class AddTransactionDialog : DialogFragment() {
     private var categories = listOf<Category>()
 
     // Sentinel label shown as the last item in the dropdown
-    private val ADD_CUSTOM_LABEL = "＋ Add Custom Category…"
+    private val AddCustomLabel = "＋ Add Custom Category…"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -157,7 +157,7 @@ class AddTransactionDialog : DialogFragment() {
     private fun updateCategorySpinner() {
         // Build the display list: real category names + the "Add Custom" sentinel at the end
         val displayItems = categories.map { it.name }.toMutableList()
-        displayItems.add(ADD_CUSTOM_LABEL)
+        displayItems.add(AddCustomLabel)
 
         val adapter = ArrayAdapter(
             requireActivity(),
@@ -203,7 +203,7 @@ class AddTransactionDialog : DialogFragment() {
         }
 
         val selectedCategory = binding.spinnerCategory.text.toString()
-        if (selectedCategory.isEmpty() || selectedCategory == ADD_CUSTOM_LABEL) {
+        if (selectedCategory.isEmpty() || selectedCategory == AddCustomLabel) {
             binding.spinnerCategory.error = "Please select or add a category"
             isValid = false
         }

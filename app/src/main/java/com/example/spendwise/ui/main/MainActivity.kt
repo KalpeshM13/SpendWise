@@ -2,6 +2,7 @@ package com.example.spendwise.ui.main
 
 import android.os.Bundle
 import android.view.HapticFeedbackConstants
+import androidx.activity.OnBackPressedCallback
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -12,6 +13,7 @@ import com.example.spendwise.R
 import com.example.spendwise.databinding.ActivityMainBinding
 import com.example.spendwise.ui.dialogs.AddTransactionDialog
 import com.example.spendwise.ui.viewModel.SpendwiseViewModel
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -31,6 +33,7 @@ class MainActivity : AppCompatActivity() {
 
         setupViewPager()
         setupFab()
+        setupBackPressHandling()
 
         binding.bottomNavigation.setOnItemSelectedListener { item ->
 
@@ -68,5 +71,28 @@ class MainActivity : AppCompatActivity() {
 
     private fun showAddTransactionDialogue() {
         AddTransactionDialog().show(supportFragmentManager, "AddTransaction")
+    }
+
+    private fun setupBackPressHandling() {
+        onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                if (binding.viewPager.currentItem != 0) {
+                    binding.viewPager.currentItem = 0
+                } else {
+                    showExitConfirmationDialog()
+                }
+            }
+        })
+    }
+
+    private fun showExitConfirmationDialog() {
+        MaterialAlertDialogBuilder(this)
+            .setTitle("Exit App")
+            .setMessage("Are you sure you want to exit?")
+            .setPositiveButton("Exit") { _, _ ->
+                finish()
+            }
+            .setNegativeButton("Cancel", null)
+            .show()
     }
 }

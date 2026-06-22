@@ -37,7 +37,7 @@ abstract class AppDatabase: RoomDatabase() {
                     AppDatabase::class.java,
                     "SpendWise_database"
                 ).apply {
-                    addCallback(object: RoomDatabase.Callback() {
+                    addCallback(object: Callback() {
                         override fun onCreate(db: SupportSQLiteDatabase) {
                             super.onCreate(db)
 

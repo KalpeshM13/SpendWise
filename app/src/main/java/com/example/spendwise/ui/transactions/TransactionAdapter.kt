@@ -15,8 +15,7 @@ import java.util.Date
 import java.util.Locale
 
 class TransactionAdapter(
-    private val onItemClick: (Transaction) -> Unit,
-    private val onDeleteClick: (Transaction) -> Unit
+    private val onItemClick: (Transaction) -> Unit
 ): ListAdapter<Transaction, TransactionAdapter.TransactionViewHolder>(TransactionDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TransactionViewHolder {

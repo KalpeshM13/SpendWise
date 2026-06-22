@@ -8,11 +8,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.lifecycleScope
-import com.example.spendwise.R
 import com.example.spendwise.data.models.DashboardState
 import com.example.spendwise.data.models.ExpenseCategoryData
 import com.example.spendwise.databinding.FragmentDashboardBinding
-import com.example.spendwise.databinding.FragmentTransactionsBinding
 import com.github.mikephil.charting.animation.Easing
 import com.github.mikephil.charting.components.Legend
 import com.github.mikephil.charting.data.PieData

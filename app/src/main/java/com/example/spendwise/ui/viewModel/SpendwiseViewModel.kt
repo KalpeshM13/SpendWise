@@ -23,20 +23,10 @@ class SpendwiseViewModel(application: Application): AndroidViewModel(application
         allCategories = repository.allCategories
     }
 
-    fun getTransactionByType(type: TransactionsType) = repository.getTransactionByType(type)
-
     fun getCategoriesByType(type: TransactionsType) = repository.getCategoriesByType(type)
-
-    fun getCategoryTotal(type: TransactionsType, startDate: Long = 0) = repository.getCategoryTotal(type, startDate)
-
-    suspend fun getTotalByType(type: TransactionsType) = repository.getTotalByType(type)
 
     fun addTransaction(transaction: Transaction) = viewModelScope.launch {
         repository.addTransaction(transaction)
-    }
-
-    fun deleteTransaction(transaction: Transaction) = viewModelScope.launch {
-        repository.deleteTransaction(transaction)
     }
 
     fun addCategory(category: Category) = viewModelScope.launch {

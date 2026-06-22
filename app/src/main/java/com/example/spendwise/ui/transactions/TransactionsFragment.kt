@@ -23,10 +23,6 @@ class TransactionsFragment : Fragment() {
     private val viewModel: TransactionsViewModel by viewModels()
     private lateinit var transactionAdapter: TransactionAdapter
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -47,9 +43,6 @@ class TransactionsFragment : Fragment() {
         transactionAdapter = TransactionAdapter(
             onItemClick = { transaction ->
                 showTransactionDetails(transaction)
-            },
-            onDeleteClick = {transaction ->
-                viewModel.deleteTransaction(transaction)
             }
         )
 
