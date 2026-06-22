@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import com.example.spendwise.R
 import com.example.spendwise.data.models.Transaction
 import com.example.spendwise.data.models.TransactionsType
 import com.example.spendwise.databinding.FragmentTransactionDetailBinding
@@ -103,8 +104,8 @@ class TransactionDetailFragment : BottomSheetDialogFragment() {
         binding.tvDetailAmount.setTextColor(
             requireContext().getColor(
                 when (transaction.type) {
-                    TransactionsType.INCOME -> android.R.color.holo_green_dark
-                    TransactionsType.EXPENSE -> android.R.color.holo_red_dark
+                    TransactionsType.INCOME -> R.color.income_green
+                    TransactionsType.EXPENSE -> R.color.expense_red
                 }
             )
         )

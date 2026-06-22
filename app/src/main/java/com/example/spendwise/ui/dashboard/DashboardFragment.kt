@@ -1,6 +1,7 @@
 package com.example.spendwise.ui.dashboard
 
 import android.graphics.Color
+import android.util.TypedValue
 import androidx.fragment.app.viewModels
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -48,11 +49,11 @@ class DashboardFragment : Fragment() {
 
             holeRadius = 58f
             transparentCircleRadius = 61f
-            setTransparentCircleColor(Color.WHITE)
+            setTransparentCircleColor(Color.TRANSPARENT)
             setTransparentCircleAlpha(110)
 
             setUsePercentValues(true)
-            setEntryLabelColor(Color.WHITE)
+            setEntryLabelColor(resolveThemeColor(com.google.android.material.R.attr.colorOnSurface))
             setEntryLabelTextSize(12f)
             setDrawEntryLabels(false)
             isRotationEnabled = false
@@ -68,6 +69,7 @@ class DashboardFragment : Fragment() {
                 yOffset = 0f
                 textSize = 12f
                 formSize = 16f
+                textColor = resolveThemeColor(com.google.android.material.R.attr.colorOnSurface)
             }
 
             animateY(1400, Easing.EaseInOutQuad)
@@ -105,21 +107,21 @@ class DashboardFragment : Fragment() {
         }
 
         val colors = listOf(
-            Color.rgb(15, 118, 110),
-            Color.rgb(16, 185, 129),
-            Color.rgb(239, 68, 68),
-            Color.rgb(245, 158, 11),
-            Color.rgb(6, 182, 212),
-            Color.rgb(99, 102, 241),
-            Color.rgb(139, 92, 246),
-            Color.rgb(100, 116, 139)
+            Color.rgb(45, 212, 191),   // Teal
+            Color.rgb(52, 211, 153),   // Emerald
+            Color.rgb(251, 113, 133),  // Rose
+            Color.rgb(251, 191, 36),   // Amber
+            Color.rgb(56, 189, 248),   // Sky
+            Color.rgb(129, 140, 248),  // Indigo
+            Color.rgb(167, 139, 250),  // Violet
+            Color.rgb(148, 163, 184)   // Slate
         )
 
         val dataset = PieDataSet(entries,"").apply {
             setColors(colors)
             valueFormatter = PercentFormatter(binding.pieChart)
             valueTextSize = 11f
-            valueTextColor = Color.WHITE
+            valueTextColor = resolveThemeColor(com.google.android.material.R.attr.colorOnSurface)
             PieDataSet.ValuePosition.INSIDE_SLICE
         }
 
@@ -129,6 +131,12 @@ class DashboardFragment : Fragment() {
             notifyDataSetChanged()
             invalidate()
         }
+    }
+
+    private fun resolveThemeColor(attrRes: Int): Int {
+        val typedValue = TypedValue()
+        requireContext().theme.resolveAttribute(attrRes, typedValue, true)
+        return typedValue.data
     }
 
     override fun onDestroyView() {

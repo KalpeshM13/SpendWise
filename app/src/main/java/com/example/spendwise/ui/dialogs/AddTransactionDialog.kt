@@ -137,7 +137,7 @@ class AddTransactionDialog : DialogFragment() {
         val newCategory = Category(
             name = name,
             type = currentType,
-            color = "#2196F3".toColorInt()
+            color = "#2DD4BF".toColorInt()
         )
         viewModel.addCategory(newCategory)
 

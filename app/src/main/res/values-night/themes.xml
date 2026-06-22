@@ -1,31 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="Base.Theme.SpendWise" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Base.Theme.SpendWise" parent="Theme.Material3.Dark.NoActionBar">
         <item name="colorPrimary">@color/brand_primary</item>
-        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorOnPrimary">@color/window_background</item>
         <item name="colorPrimaryContainer">@color/brand_primary_container</item>
         <item name="colorOnPrimaryContainer">@color/brand_primary</item>
 
         <item name="colorSecondary">@color/brand_primary</item>
-        <item name="colorOnSecondary">@color/white</item>
+        <item name="colorOnSecondary">@color/window_background</item>
         <item name="colorSecondaryContainer">@color/brand_primary_container</item>
         <item name="colorOnSecondaryContainer">@color/brand_primary</item>
 
         <item name="colorTertiary">@color/brand_primary</item>
-        <item name="colorOnTertiary">@color/white</item>
+        <item name="colorOnTertiary">@color/window_background</item>
         <item name="colorTertiaryContainer">@color/brand_primary_container</item>
         <item name="colorOnTertiaryContainer">@color/brand_primary</item>
 
         <item name="colorSurface">@color/window_background</item>
         <item name="colorOnSurface">@color/text_primary</item>
+        <item name="colorOnSurfaceVariant">@color/text_secondary</item>
 
-        <item name="colorSurfaceContainerLowest">@color/card_background</item>
+        <item name="colorSurfaceContainerLowest">@color/window_background</item>
         <item name="colorSurfaceContainerLow">@color/card_background</item>
         <item name="colorSurfaceContainer">@color/card_background</item>
         <item name="colorSurfaceContainerHigh">@color/card_background</item>
         <item name="colorSurfaceContainerHighest">@color/card_background</item>
 
+        <item name="colorOutline">@color/border_color</item>
+        <item name="colorOutlineVariant">@color/divider_color</item>
+
         <item name="elevationOverlayEnabled">false</item>
+
+        <!-- Status bar & navigation bar styling -->
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@color/card_background</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowLightNavigationBar">false</item>
     </style>
 
     <style name="Theme.SpendWise" parent="Base.Theme.SpendWise" />

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Core text colors for night mode -->
+    <color name="white">#FFFFFFFF</color>
+    <color name="text_primary">#F1F5F9</color>
+    <color name="text_secondary">#94A3B8</color>
+
+    <!-- Semantic colors – luminous versions that pop on dark backgrounds -->
+    <color name="income_green">#34D399</color>
+    <color name="expense_red">#FB7185</color>
+
+    <!-- Surfaces: deep charcoal with subtle blue undertone -->
+    <color name="window_background">#0F172A</color>
+    <color name="appbar_background">#0F172A</color>
+    <color name="card_background">#1E293B</color>
+
+    <!-- Brand: brighter teal variant for dark mode legibility -->
+    <color name="brand_primary">#2DD4BF</color>
+    <color name="brand_primary_container">#1A2DD4BF</color>
+
+    <!-- Tab system -->
+    <color name="tab_container_background">#1E293B</color>
+    <color name="tab_selected_background">#334155</color>
+    <color name="tab_text_selected">#F1F5F9</color>
+    <color name="tab_text_unselected">#64748B</color>
+
+    <!-- FAB -->
+    <color name="fab_text_color">#0F172A</color>
+
+    <!-- Borders & dividers -->
+    <color name="divider_color">#334155</color>
+    <color name="border_color">#334155</color>
+
+    <!-- Destructive -->
+    <color name="destructive_red">#F43F5E</color>
+
+    <!-- Launcher background for night -->
+    <color name="ic_launcher_background">#0F172A</color>
+</resources>
