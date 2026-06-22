@@ -55,6 +55,9 @@ class MainActivity : AppCompatActivity() {
                     1 -> binding.bottomNavigation.selectedItemId = R.id.nav_transactions
                     2 -> binding.bottomNavigation.selectedItemId = R.id.nav_profile
                 }
+                if (position == 2)
+                    binding.fabAddTransaction.hide()
+                else binding.fabAddTransaction.show()
             }
         })
     }
