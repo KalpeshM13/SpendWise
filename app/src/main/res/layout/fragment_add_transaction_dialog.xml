@@ -28,7 +28,7 @@
         android:background="@drawable/tab_layout_bg"
         app:tabBackground="@drawable/tab_background_selector"
         app:tabGravity="fill"
-        app:tabIndicatorHeight="0dp"
+        app:tabIndicatorHeight="3dp"
         app:tabMode="fixed"
         app:tabRippleColor="@android:color/transparent"
         app:tabSelectedTextColor="@color/tab_text_selected"
@@ -152,7 +152,7 @@
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="16sp"
-            app:backgroundTint="@color/brand_primary"
+            app:backgroundTint="@color/button_primary"
             app:cornerRadius="16dp"
             app:elevation="0dp" />
 

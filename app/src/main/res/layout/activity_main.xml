@@ -68,7 +68,7 @@
             android:fontFamily="sans-serif-medium"
             app:icon="@drawable/add_24px"
             app:iconTint="@color/fab_text_color"
-            app:backgroundTint="@color/brand_primary"
+            app:backgroundTint="@color/button_primary"
             app:cornerRadius="18dp"
             app:elevation="6dp" />
 

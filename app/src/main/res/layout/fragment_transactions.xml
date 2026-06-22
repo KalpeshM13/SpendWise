@@ -23,7 +23,7 @@
         android:background="@drawable/tab_layout_bg"
         app:tabBackground="@drawable/tab_background_selector"
         app:tabGravity="fill"
-        app:tabIndicatorHeight="0dp"
+        app:tabIndicatorHeight="3dp"
         app:tabSelectedTextColor="@color/tab_text_selected"
         app:tabTextColor="@color/tab_text_unselected"
         app:tabRippleColor="@android:color/transparent"

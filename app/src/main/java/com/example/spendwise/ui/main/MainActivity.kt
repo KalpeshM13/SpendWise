@@ -42,6 +42,7 @@ class MainActivity : AppCompatActivity() {
             when (item.itemId) {
                 R.id.nav_dashboard -> binding.viewPager.currentItem = 0
                 R.id.nav_transactions -> binding.viewPager.currentItem = 1
+                R.id.nav_profile -> binding.viewPager.currentItem = 2
             }
             true
         }
@@ -52,6 +53,7 @@ class MainActivity : AppCompatActivity() {
                 when (position) {
                     0 -> binding.bottomNavigation.selectedItemId = R.id.nav_dashboard
                     1 -> binding.bottomNavigation.selectedItemId = R.id.nav_transactions
+                    2 -> binding.bottomNavigation.selectedItemId = R.id.nav_profile
                 }
             }
         })
