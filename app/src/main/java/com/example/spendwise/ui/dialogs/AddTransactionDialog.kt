@@ -1,6 +1,7 @@
 package com.example.spendwise.ui.dialogs
 
 import android.os.Bundle
+import android.view.HapticFeedbackConstants
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -38,6 +39,11 @@ class AddTransactionDialog : DialogFragment() {
     ): View {
         _binding = FragmentAddTransactionDialogBinding.inflate(inflater, container, false)
         return binding.root
+    }
+
+    override fun onStart() {
+        super.onStart()
+        dialog?.window?.setBackgroundDrawableResource(android.R.color.transparent)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -126,6 +132,7 @@ class AddTransactionDialog : DialogFragment() {
 
     private fun setupButtons() {
         binding.saveButton.setOnClickListener {
+            it.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
             if (validateInput()) {
                 saveTransaction()
                 dismiss()
@@ -133,6 +140,7 @@ class AddTransactionDialog : DialogFragment() {
         }
 
         binding.cancelButton.setOnClickListener {
+            it.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
             dismiss()
         }
     }

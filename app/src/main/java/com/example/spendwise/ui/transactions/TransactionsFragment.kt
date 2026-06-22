@@ -2,6 +2,7 @@ package com.example.spendwise.ui.transactions
 
 import androidx.fragment.app.viewModels
 import android.os.Bundle
+import android.view.HapticFeedbackConstants
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -70,11 +71,15 @@ class TransactionsFragment : Fragment() {
                         1 -> viewModel.setTransactionFilter(TransactionFilter.INCOME)
                         2 -> viewModel.setTransactionFilter(TransactionFilter.EXPENSE)
                     }
-                }
 
+                    binding.transactionTabLayout.performHapticFeedback(
+                        HapticFeedbackConstants.VIRTUAL_KEY
+                    )
+                }
                 override fun onTabUnselected(p0: TabLayout.Tab?) {}
                 override fun onTabReselected(p0: TabLayout.Tab?) {}
             }
+
         )
     }
 
@@ -87,6 +92,9 @@ class TransactionsFragment : Fragment() {
     }
 
     private fun showTransactionDetails(transaction: Transaction) {
+        binding.transactionTabLayout.performHapticFeedback(
+            HapticFeedbackConstants.VIRTUAL_KEY
+        )
         TransactionDetailFragment
             .newInstance(transaction)
             .show(childFragmentManager, "TransactionDetail")

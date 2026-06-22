@@ -107,17 +107,17 @@ class DashboardFragment : Fragment() {
         }
 
         val colors = listOf(
-            Color.rgb(193, 37, 82),
-            Color.rgb(245, 199, 0),
-            Color.rgb(255, 102, 0),
-            Color.rgb(179, 48, 80),
-            Color.rgb(64, 89, 120),
-            Color.rgb(149, 165, 124),
-            Color.rgb(217, 184, 162),
-            Color.rgb(191, 134, 134)
+            Color.rgb(15, 118, 110),
+            Color.rgb(16, 185, 129),
+            Color.rgb(239, 68, 68),
+            Color.rgb(245, 158, 11),
+            Color.rgb(6, 182, 212),
+            Color.rgb(99, 102, 241),
+            Color.rgb(139, 92, 246),
+            Color.rgb(100, 116, 139)
         )
 
-        val dataset = PieDataSet(entries,"Expense Categories").apply {
+        val dataset = PieDataSet(entries,"").apply {
             setColors(colors)
             valueFormatter = PercentFormatter(binding.pieChart)
             valueTextSize = 11f

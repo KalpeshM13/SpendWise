@@ -1,16 +1,17 @@
 package com.example.spendwise.ui.main
 
 import android.os.Bundle
+import android.view.HapticFeedbackConstants
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.ViewModelProvider
+import androidx.viewpager2.widget.ViewPager2
 import com.example.spendwise.R
 import com.example.spendwise.databinding.ActivityMainBinding
 import com.example.spendwise.ui.dialogs.AddTransactionDialog
 import com.example.spendwise.ui.viewModel.SpendwiseViewModel
-import com.google.android.material.tabs.TabLayoutMediator
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -30,23 +31,37 @@ class MainActivity : AppCompatActivity() {
 
         setupViewPager()
         setupFab()
+
+        binding.bottomNavigation.setOnItemSelectedListener { item ->
+
+            binding.bottomNavigation.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
+
+            when (item.itemId) {
+                R.id.nav_dashboard -> binding.viewPager.currentItem = 0
+                R.id.nav_transactions -> binding.viewPager.currentItem = 1
+            }
+            true
+        }
+
+        binding.viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+            override fun onPageSelected(position: Int) {
+                super.onPageSelected(position)
+                when (position) {
+                    0 -> binding.bottomNavigation.selectedItemId = R.id.nav_dashboard
+                    1 -> binding.bottomNavigation.selectedItemId = R.id.nav_transactions
+                }
+            }
+        })
     }
 
     private fun setupViewPager() {
         val adapter = SpendwiseAdapter(this)
         binding.viewPager.adapter = adapter
-
-        TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
-            tab.text = when(position) {
-                0 -> getString(R.string.tab_dashboard)
-                1 -> getString(R.string.tab_transactions)
-                else -> getString(R.string.tab_dashboard)
-            }
-        }.attach()
     }
 
     private fun setupFab() {
         binding.fabAddTransaction.setOnClickListener {
+            it.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
             showAddTransactionDialogue()
         }
     }
@@ -54,5 +69,4 @@ class MainActivity : AppCompatActivity() {
     private fun showAddTransactionDialogue() {
         AddTransactionDialog().show(supportFragmentManager, "AddTransaction")
     }
-
 }

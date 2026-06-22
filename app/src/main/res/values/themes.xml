@@ -1,8 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
     <style name="Base.Theme.SpendWise" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimary">@color/brand_primary</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorPrimaryContainer">@color/brand_primary_container</item>
+        <item name="colorOnPrimaryContainer">@color/brand_primary</item>
+
+        <item name="colorSecondary">@color/brand_primary</item>
+        <item name="colorOnSecondary">@color/white</item>
+        <item name="colorSecondaryContainer">@color/brand_primary_container</item>
+        <item name="colorOnSecondaryContainer">@color/brand_primary</item>
+
+        <item name="colorTertiary">@color/brand_primary</item>
+        <item name="colorOnTertiary">@color/white</item>
+        <item name="colorTertiaryContainer">@color/brand_primary_container</item>
+        <item name="colorOnTertiaryContainer">@color/brand_primary</item>
+
+        <item name="colorSurface">@color/window_background</item>
+        <item name="colorOnSurface">@color/text_primary</item>
+
+        <item name="colorSurfaceContainerLowest">@color/card_background</item>
+        <item name="colorSurfaceContainerLow">@color/card_background</item>
+        <item name="colorSurfaceContainer">@color/card_background</item>
+        <item name="colorSurfaceContainerHigh">@color/card_background</item>
+        <item name="colorSurfaceContainerHighest">@color/card_background</item>
+
+        <item name="elevationOverlayEnabled">false</item>
     </style>
 
     <style name="Theme.SpendWise" parent="Base.Theme.SpendWise" />

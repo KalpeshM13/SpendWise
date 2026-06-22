@@ -1,94 +1,164 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
-    android:padding="16dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@drawable/dialog_background"
+    android:minWidth="340dp"
+    android:orientation="vertical"
+    android:padding="24dp"
     tools:context=".ui.dialogs.AddTransactionDialog">
+
+    <View
+        android:layout_width="36dp"
+        android:layout_height="4dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="24dp"
+        android:background="@color/divider_color" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="24dp"
+        android:fontFamily="sans-serif-medium"
+        android:text="@string/new_transaction"
+        android:textColor="@color/text_primary"
+        android:textSize="20sp" />
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/typeTabLayout"
-        android:layout_marginBottom="8dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="48dp"
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/tab_layout_bg"
+        app:tabBackground="@drawable/tab_background_selector"
+        app:tabGravity="fill"
+        app:tabIndicatorHeight="0dp"
+        app:tabMode="fixed"
+        app:tabRippleColor="@android:color/transparent"
+        app:tabSelectedTextColor="@color/tab_text_selected"
+        app:tabTextAppearance="@style/TabTextStyle"
+        app:tabTextColor="@color/tab_text_unselected">
 
         <com.google.android.material.tabs.TabItem
-            android:text="@string/expense"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:text="@string/expense" />
 
         <com.google.android.material.tabs.TabItem
-            android:text="@string/income"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:text="@string/income" />
 
     </com.google.android.material.tabs.TabLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:layout_margin="8dp"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        app:boxCornerRadiusBottomEnd="16dp"
+        app:boxCornerRadiusBottomStart="16dp"
+        app:boxCornerRadiusTopEnd="16dp"
+        app:boxCornerRadiusTopStart="16dp"
+        app:boxStrokeColor="@color/brand_primary"
+        app:hintTextColor="@color/brand_primary">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etAmount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-black"
             android:hint="@string/amount"
             android:inputType="numberDecimal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:textColor="@color/text_primary"
+            android:textSize="22sp" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:layout_margin="8dp"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        app:boxCornerRadiusBottomEnd="16dp"
+        app:boxCornerRadiusBottomStart="16dp"
+        app:boxCornerRadiusTopEnd="16dp"
+        app:boxCornerRadiusTopStart="16dp"
+        app:boxStrokeColor="@color/brand_primary"
+        app:hintTextColor="@color/brand_primary">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etDescription"
-            android:hint="@string/description"
-            android:inputType="text"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:hint="@string/description"
+            android:inputType="textCapSentences"
+            android:textColor="@color/text_primary"
+            android:textSize="16sp" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:layout_margin="8dp"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        app:boxCornerRadiusBottomEnd="16dp"
+        app:boxCornerRadiusBottomStart="16dp"
+        app:boxCornerRadiusTopEnd="16dp"
+        app:boxCornerRadiusTopStart="16dp"
+        app:boxStrokeColor="@color/brand_primary"
+        app:hintTextColor="@color/brand_primary">
 
         <AutoCompleteTextView
             android:id="@+id/spinnerCategory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
             android:hint="@string/category"
             android:inputType="none"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:textColor="@color/text_primary"
+            android:textSize="16sp" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <LinearLayout
-        android:orientation="horizontal"
-        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/cancelButton"
-            android:text="@string/cancel"
             style="@style/Widget.MaterialComponents.Button.TextButton"
             android:layout_width="0dp"
+            android:layout_height="54dp"
+            android:layout_marginEnd="8dp"
             android:layout_weight="1"
-            android:layout_height="wrap_content"/>
+            android:fontFamily="sans-serif-medium"
+            android:text="@string/cancel"
+            android:textAllCaps="false"
+            android:textColor="@color/text_secondary"
+            android:textSize="16sp"
+            app:cornerRadius="16dp" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/saveButton"
-            android:text="@string/save"
-            android:textAllCaps="true"
             android:layout_width="0dp"
+            android:layout_height="54dp"
+            android:layout_marginStart="8dp"
             android:layout_weight="1"
-            android:layout_height="wrap_content"/>
+            android:fontFamily="sans-serif-medium"
+            android:text="@string/save"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:backgroundTint="@color/brand_primary"
+            app:cornerRadius="16dp"
+            app:elevation="0dp" />
 
     </LinearLayout>
 

@@ -2,14 +2,15 @@ package com.example.spendwise.ui.transactions
 
 import android.icu.text.NumberFormat
 import android.os.Bundle
+import android.view.HapticFeedbackConstants
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import com.example.spendwise.data.models.Transaction
 import com.example.spendwise.data.models.TransactionsType
-
 import com.example.spendwise.databinding.FragmentTransactionDetailBinding
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
@@ -79,8 +80,18 @@ class TransactionDetailFragment : BottomSheetDialogFragment() {
         setupDeleteButton()
     }
 
+    override fun onStart() {
+        super.onStart()
+        val bottomSheet = dialog?.findViewById<View>(com.google.android.material.R.id.design_bottom_sheet)
+        bottomSheet?.let {
+            val behavior = BottomSheetBehavior.from(it)
+            behavior.state = BottomSheetBehavior.STATE_EXPANDED
+        }
+    }
+
     private fun bindTransactionData() {
         val dateFormatter = SimpleDateFormat("EEEE, MMMM dd yyyy", Locale.getDefault())
+        val timeFormatter = SimpleDateFormat("hh:mm a", Locale.getDefault())
         val currencyFormatter = NumberFormat.getCurrencyInstance()
 
         val formattedAmount = currencyFormatter.format(transaction.amount)
@@ -103,10 +114,12 @@ class TransactionDetailFragment : BottomSheetDialogFragment() {
         binding.tvDetailType.text = transaction.type.name.lowercase()
             .replaceFirstChar { it.uppercaseChar() }
         binding.tvDetailDate.text = dateFormatter.format(Date(transaction.date))
+        binding.tvDetailTime.text = timeFormatter.format(Date(transaction.date))
     }
 
     private fun setupDeleteButton() {
         binding.btnDeleteTransaction.setOnClickListener {
+            it.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
             showDeleteConfirmation()
         }
     }

@@ -42,4 +42,7 @@
     <string name="error_amount_required">Amount is required</string>
     <string name="error_category_required">Category is required</string>
     <string name="error_invalid_amount">Invalid Amount</string>
+    <string name="transaction_details">Transaction Details</string>
+    <string name="new_transaction">New Transaction</string>
+    <string name="time">Time</string>
 </resources>
