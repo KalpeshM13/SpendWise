@@ -133,13 +133,6 @@ class TransactionDetailFragment : BottomSheetDialogFragment() {
                 val parentView = parentFragment?.view ?: activity?.findViewById(android.R.id.content)
                 viewModel.deleteTransaction(deletedTransaction)
                 dismiss()
-                parentView?.let { anchorView ->
-                    Snackbar.make(anchorView, "Transaction deleted", Snackbar.LENGTH_LONG)
-                        .setAction("Undo") {
-                            viewModel.insertTransaction(deletedTransaction)
-                        }
-                        .show()
-                }
             }
             .setNegativeButton("Cancel", null)
             .show()

@@ -5,17 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/dialog_background"
-    android:minWidth="330dp"
+    android:minWidth="350dp"
     android:orientation="vertical"
     android:padding="24dp"
     tools:context=".ui.dialogs.AddTransactionDialog">
-
-    <View
-        android:layout_width="36dp"
-        android:layout_height="4dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="24dp"
-        android:background="@color/divider_color" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -74,7 +67,7 @@
             android:hint="@string/amount"
             android:inputType="numberDecimal"
             android:textColor="@color/text_primary"
-            android:textSize="22sp" />
+            android:textSize="20sp" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -87,6 +80,8 @@
         app:boxCornerRadiusBottomStart="16dp"
         app:boxCornerRadiusTopEnd="16dp"
         app:boxCornerRadiusTopStart="16dp"
+        app:counterEnabled="true"
+        app:counterMaxLength="100"
         app:boxStrokeColor="@color/brand_primary"
         app:hintTextColor="@color/brand_primary">
 
@@ -95,6 +90,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif"
+            android:maxLength="100"
             android:hint="@string/description"
             android:inputType="textCapSentences"
             android:textColor="@color/text_primary"

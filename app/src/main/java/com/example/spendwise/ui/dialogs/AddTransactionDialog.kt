@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter
 import android.widget.EditText
 import android.widget.FrameLayout
 import androidx.core.graphics.toColorInt
+import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -30,7 +31,6 @@ class AddTransactionDialog : DialogFragment() {
     private var currentType = TransactionsType.EXPENSE
     private var categories = listOf<Category>()
 
-    // Sentinel label shown as the last item in the dropdown
     private val AddCustomLabel = "＋ Add Custom Category…"
 
     override fun onCreateView(
@@ -53,8 +53,21 @@ class AddTransactionDialog : DialogFragment() {
 
         setupTypeSelection()
         setupCategorySpinner()
+        setupInputListeners()
         setupButtons()
         observeCategories()
+    }
+
+    private fun setupInputListeners() {
+        binding.etAmount.doOnTextChanged { _, _, _, _ ->
+            binding.etAmount.error = null
+        }
+        binding.etDescription.doOnTextChanged { _, _, _, _ ->
+            binding.etDescription.error = null
+        }
+        binding.spinnerCategory.doOnTextChanged { _, _, _, _ ->
+            binding.spinnerCategory.error = null
+        }
     }
 
     private fun setupTypeSelection() {
@@ -65,6 +78,8 @@ class AddTransactionDialog : DialogFragment() {
                     1 -> TransactionsType.INCOME
                     else -> TransactionsType.EXPENSE
                 }
+
+                binding.typeTabLayout.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
                 observeCategories()
             }
 
@@ -81,13 +96,13 @@ class AddTransactionDialog : DialogFragment() {
         )
         binding.spinnerCategory.setAdapter(adapter)
 
-        // Intercept item clicks to detect the sentinel "Add Custom Category…" option
         binding.spinnerCategory.setOnItemClickListener { _, _, position, _ ->
-            val adapter = binding.spinnerCategory.adapter
-            if (adapter != null && position == adapter.count - 1) {
-                // The last item is our sentinel — clear the field and show the input dialog
+            val currentAdapter = binding.spinnerCategory.adapter
+            if (currentAdapter != null && position == currentAdapter.count - 1) {
                 binding.spinnerCategory.setText("", false)
                 showAddCustomCategoryDialog()
+            } else {
+                binding.spinnerCategory.error = null
             }
         }
     }
@@ -98,7 +113,6 @@ class AddTransactionDialog : DialogFragment() {
             setSingleLine()
         }
 
-        // Wrap with padding so it sits nicely inside the dialog
         val container = FrameLayout(requireContext()).apply {
             val paddingPx = (16 * resources.displayMetrics.density).toInt()
             setPadding(paddingPx, paddingPx / 2, paddingPx, 0)
@@ -128,6 +142,7 @@ class AddTransactionDialog : DialogFragment() {
         viewModel.addCategory(newCategory)
 
         binding.spinnerCategory.setText(name, false)
+        binding.spinnerCategory.error = null
     }
 
     private fun setupButtons() {
@@ -155,7 +170,6 @@ class AddTransactionDialog : DialogFragment() {
     }
 
     private fun updateCategorySpinner() {
-        // Build the display list: real category names + the "Add Custom" sentinel at the end
         val displayItems = categories.map { it.name }.toMutableList()
         displayItems.add(AddCustomLabel)
 
