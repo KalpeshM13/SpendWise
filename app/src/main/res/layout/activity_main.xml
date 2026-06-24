@@ -27,6 +27,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
+                android:id="@+id/appBarText"
                 android:layout_gravity="start"
                 android:text="@string/app_name"
                 android:fontFamily="sans-serif-black"

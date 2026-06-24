@@ -2,6 +2,7 @@
 <resources>
     <!-- Core text colors for night mode -->
     <color name="white">#FFFFFFFF</color>
+    <color name="black">#000000</color>
     <color name="text_primary">#F8FAFC</color>
     <color name="text_secondary">#9E9E9E</color>
 

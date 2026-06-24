@@ -2,6 +2,7 @@
 <resources>
     <!-- Core text colors -->
     <color name="white">#FFFFFFFF</color>
+    <color name="black">#000000</color>
     <color name="text_primary">#0F172A</color>
     <color name="text_secondary">#64748B</color>
 

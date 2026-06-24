@@ -7,6 +7,7 @@
     <!--    Navigation Related-->
     <string name="tab_dashboard">Dashboard</string>
     <string name="tab_transactions">Transactions</string>
+    <string name="tab_profile">Profile</string>
 
     <!--    Dashboard Strings-->
     <string name="current_balance">Current Balance</string>
@@ -15,6 +16,7 @@
     <string name="expense_breakdown">Expense Breakdown</string>
 
     <!--    Transaction Related-->
+    <string name="transactions">Transactions</string>
     <string name="add_transaction">Add Transaction</string>
     <string name="delete_transaction">Delete Transaction</string>
     <string name="amount">Amount</string>
@@ -35,4 +37,9 @@
     <string name="new_transaction">New Transaction</string>
     <string name="time">Time</string>
     <string name="profile">Profile</string>
+    <string name="android_user">Android User</string>
+    <string name="user_email">User Email</string>
+    <string name="manage_categories">Manage Categories</string>
+    <string name="change_password">Change Password</string>
+    <string name="app_version">Version: %1$s</string>
 </resources>
