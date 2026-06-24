@@ -78,8 +78,16 @@ class TransactionsFragment : Fragment() {
 
     private fun observeTransactions() {
         viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.transactions.collect {transactions ->
+            viewModel.transactions.collect { transactions ->
                 transactionAdapter.submitList(transactions)
+                
+                if (transactions.isEmpty()) {
+                    binding.transactionRecyclerView.visibility = View.GONE
+                    binding.emptyStateLayout.visibility = View.VISIBLE
+                } else {
+                    binding.transactionRecyclerView.visibility = View.VISIBLE
+                    binding.emptyStateLayout.visibility = View.GONE
+                }
             }
         }
     }

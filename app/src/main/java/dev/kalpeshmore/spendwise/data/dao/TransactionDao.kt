@@ -32,6 +32,21 @@ interface TransactionDao {
         startDate: Long = 0
     ): Flow<List<CategoryTotal>>
 
+    @Query("SELECT COALESCE(SUM(amount), 0.0) FROM transactions WHERE type = :type AND date >= :startDate AND date <= :endDate")
+    fun getTotalByTypeAndDateRange(type: TransactionsType, startDate: Long, endDate: Long): Flow<Double>
+
+    @Query("""
+        SELECT category as categoryName, COALESCE(SUM(amount), 0.0) as totalAmount
+        FROM transactions
+        WHERE type = :type AND date >= :startDate AND date <= :endDate
+        GROUP BY category
+    """)
+    fun getCategoryTotalByDateRange(
+        type: TransactionsType,
+        startDate: Long,
+        endDate: Long
+    ): Flow<List<CategoryTotal>>
+
     @Insert
     suspend fun insert(transaction: Transaction)
 

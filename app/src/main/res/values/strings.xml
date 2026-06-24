@@ -42,4 +42,9 @@
     <string name="user_email">User Email</string>
     <string name="manage_categories">Manage Categories</string>
     <string name="edit_profile">Edit Profile</string>
+    <string name="select_month">Select Month</string>
+    <string name="pick_month">Pick a Month</string>
+    <string name="previous_year">Previous year</string>
+    <string name="next_year">Next year</string>
+    <string name="no_transactions">No transactions. Add one!</string>
 </resources>
