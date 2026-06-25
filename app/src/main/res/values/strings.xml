@@ -47,4 +47,9 @@
     <string name="previous_year">Previous year</string>
     <string name="next_year">Next year</string>
     <string name="no_transactions">No transactions. Add one!</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="edit_category">Edit Category</string>
+    <string name="delete_category">Delete Category</string>
+    <string name="change_password">Change Password</string>
 </resources>

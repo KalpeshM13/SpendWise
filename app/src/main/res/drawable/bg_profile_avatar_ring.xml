@@ -6,6 +6,6 @@
         android:color="@color/brand_primary" />
     <solid android:color="@android:color/transparent" />
     <size
-        android:width="120dp"
-        android:height="120dp" />
+        android:width="155dp"
+        android:height="155dp" />
 </shape>

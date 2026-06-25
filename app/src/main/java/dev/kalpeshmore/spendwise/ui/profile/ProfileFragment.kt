@@ -5,6 +5,7 @@ import android.util.TypedValue
 import androidx.fragment.app.viewModels
 import android.os.Bundle
 import android.view.Gravity
+import android.view.HapticFeedbackConstants
 import android.widget.GridLayout
 import android.widget.TextView
 import androidx.core.content.ContextCompat
@@ -12,6 +13,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.ViewCompat.performHapticFeedback
 import androidx.lifecycle.lifecycleScope
 import com.github.mikephil.charting.animation.Easing
 import com.github.mikephil.charting.components.Legend
@@ -58,6 +60,16 @@ class ProfileFragment : Fragment() {
         updateMonthButtonText()
         setupPieChart()
         observeDashboardState()
+
+        binding.manageCategories.setOnClickListener {
+            it.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
+            ManageCategoriesFragment().show(parentFragmentManager, "ManageCategoriesFragment")
+        }
+
+        binding.editProfile.setOnClickListener {
+            it.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
+            EditProfileFragment().show(parentFragmentManager, "EditProfileFragment")
+        }
 
         binding.monthPicker.setOnClickListener {
             showMonthPickerDialog()

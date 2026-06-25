@@ -27,4 +27,6 @@ class SpendwiseRepo(
 
     suspend fun addCategory(category: Category) = categoryDao.insert(category)
 
+    suspend fun deleteCategory(category: Category) = categoryDao.delete(category)
+
 }

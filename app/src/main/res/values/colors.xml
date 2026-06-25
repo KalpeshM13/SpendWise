@@ -38,4 +38,5 @@
 
     <!-- Destructive -->
     <color name="destructive_red">#DC2626</color>
+    <color name="delete_container">#FDAAAA</color>
 </resources>
