@@ -35,7 +35,9 @@
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:navigationBarColor">@color/card_background</item>
         <item name="android:windowLightStatusBar">false</item>
-        <item name="android:windowLightNavigationBar">false</item>
+
+        <item name="android:fontFamily">@font/dm_sans_24pt_black</item>
+        <item name="fontFamily">@font/dm_sans_24pt_black</item>
     </style>
 
     <style name="Theme.SpendWise" parent="Base.Theme.SpendWise" />
