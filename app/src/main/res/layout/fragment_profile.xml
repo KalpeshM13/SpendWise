@@ -7,6 +7,7 @@
     android:background="@color/window_background"
     android:clipToPadding="false"
     android:fillViewport="true"
+    android:paddingBottom="10dp"
     tools:context=".ui.profile.ProfileFragment">
 
     <LinearLayout
