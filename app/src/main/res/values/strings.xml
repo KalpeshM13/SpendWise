@@ -52,4 +52,8 @@
     <string name="edit_category">Edit Category</string>
     <string name="delete_category">Delete Category</string>
     <string name="change_password">Change Password</string>
+    <string name="current_password">Current Password</string>
+    <string name="new_password">New Password</string>
+    <string name="confirm_new_password">Confirm New Password</string>
+    <string name="forgot_password"><u>Forgot Password?</u></string>
 </resources>

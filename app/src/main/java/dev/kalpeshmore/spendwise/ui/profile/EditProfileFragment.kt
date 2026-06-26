@@ -2,14 +2,13 @@ package dev.kalpeshmore.spendwise.ui.profile
 
 import android.os.Bundle
 import android.view.HapticFeedbackConstants
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import dev.kalpeshmore.spendwise.R
 import dev.kalpeshmore.spendwise.databinding.FragmentEditProfileBinding
+import dev.kalpeshmore.spendwise.ui.auth.ChangePasswordFragment
 
 class EditProfileFragment : BottomSheetDialogFragment() {
     private var _binding: FragmentEditProfileBinding? = null
@@ -46,6 +45,11 @@ class EditProfileFragment : BottomSheetDialogFragment() {
         }
 
         binding.changePassword.setOnClickListener {
+            it.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
+            ChangePasswordFragment().show(parentFragmentManager, "ChangePasswordFragment")
+        }
+
+        binding.btnEditAvatar.setOnClickListener {
             it.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
         }
     }
