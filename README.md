@@ -66,7 +66,7 @@ Before you begin, ensure you have the following installed on your machine:
 
 You can run SpendWise using one of the three methods below. **Using a physical Android device is highly recommended** to fully experience the built-in haptic feedback.
 
-#### Option A: Running on a Physical Device via USB Debugging (Recommended)
+#### Option 1: Running on a Physical Device via USB Debugging (Recommended)
 
 1.  **Enable Developer Options on your Phone:**
     *   Go to **Settings > About Phone**.
@@ -85,7 +85,7 @@ You can run SpendWise using one of the three methods below. **Using a physical A
 
 ---
 
-#### Option B: Running on a Physical Device via Wireless Debugging (Alternative Recommended)
+#### Option 2: Running on a Physical Device via Wireless Debugging (Alternative Recommended)
 
 If you prefer a cable-free experience, Android 11+ supports debugging over Wi-Fi.
 
@@ -107,7 +107,7 @@ If you prefer a cable-free experience, Android 11+ supports debugging over Wi-Fi
 
 ---
 
-#### Option C: Running on the Android Studio Emulator (Virtual Device)
+#### Option 3: Running on the Android Studio Emulator (Virtual Device)
 
 If you don't have a physical device, you can create a Virtual Device (AVD).
 
