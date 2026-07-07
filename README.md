@@ -33,6 +33,24 @@ SpendWise is developed using standard Native Android components and follows the 
 
 ---
 
+## 📲 Quick Installation Guide (For Regular Users)
+
+If you just want to use **SpendWise** on your Android device without building it from source, follow these simple steps:
+
+1.  **Download the APK:**
+    *   On your Android device, open a web browser and navigate to the [Releases](https://github.com/KalpeshM13/SpendWise/releases) section of this repository.
+    *   Download the latest `.apk` file from the **Assets** section of the latest release.
+2.  **Enable Unknown Sources (if required):**
+    *   If you haven't installed apps outside the Google Play Store before, your device might prompt you to allow installations from "Unknown Sources" or your web browser/file manager.
+    *   Go to **Settings > Security** (or **Apps > Special app access > Install unknown apps**) and toggle the permission on for your browser/file manager.
+3.  **Install the App:**
+    *   Once the download completes, tap the download finished notification or open your **Downloads** folder using a file manager.
+    *   Tap on the downloaded `.apk` file and select **Install**.
+4.  **Launch SpendWise:**
+    *   Open the app from your app drawer and start managing your finances!
+
+---
+
 ## 💻 Developer Installation Guide
 
 Follow these steps to set up the development environment, build the project, and run the application on an emulator or a physical device.
