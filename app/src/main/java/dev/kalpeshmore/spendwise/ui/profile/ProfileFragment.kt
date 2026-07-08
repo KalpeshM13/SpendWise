@@ -13,7 +13,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.ViewCompat.performHapticFeedback
 import androidx.lifecycle.lifecycleScope
 import com.github.mikephil.charting.animation.Easing
 import com.github.mikephil.charting.components.Legend
@@ -30,7 +29,11 @@ import kotlinx.coroutines.launch
 import java.text.DateFormatSymbols
 import java.text.NumberFormat
 import java.util.Calendar
-import java.util.Locale
+import android.content.Context
+import android.content.res.Configuration
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.content.edit
+import dev.kalpeshmore.spendwise.util.LocaleHelper
 
 class ProfileFragment : Fragment() {
 
@@ -41,7 +44,7 @@ class ProfileFragment : Fragment() {
 
     private var selectedMonth = Calendar.getInstance().get(Calendar.MONTH)
     private var selectedYear = Calendar.getInstance().get(Calendar.YEAR)
-    private val currencyFormatter = NumberFormat.getCurrencyInstance(Locale.getDefault())
+    private lateinit var currencyFormatter: NumberFormat
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
@@ -50,6 +53,8 @@ class ProfileFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        currencyFormatter = LocaleHelper.getCurrencyFormatter(requireContext())
 
         val versionName = requireContext()
             .packageManager
@@ -73,6 +78,20 @@ class ProfileFragment : Fragment() {
 
         binding.monthPicker.setOnClickListener {
             showMonthPickerDialog()
+        }
+
+        updateThemeIcon()
+
+        binding.manageTheme.setOnClickListener {
+            it.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
+            toggleTheme()
+        }
+
+        updateCurrencySubtitle()
+
+        binding.changeCurrency.setOnClickListener {
+            it.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
+            showCurrencyPickerDialog()
         }
     }
 
@@ -279,6 +298,76 @@ class ProfileFragment : Fragment() {
         val typedValue = TypedValue()
         requireContext().theme.resolveAttribute(attrRes, typedValue, true)
         return typedValue.data
+    }
+
+    private fun updateThemeIcon() {
+        val currentMode = requireContext().resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
+        val isDarkMode = currentMode == Configuration.UI_MODE_NIGHT_YES
+        if (isDarkMode) {
+            binding.themeIcon.setImageResource(R.drawable.dark_mode_24px)
+        } else {
+            binding.themeIcon.setImageResource(R.drawable.light_mode_24px)
+        }
+    }
+
+    private fun toggleTheme() {
+        val sharedPreferences = requireContext().getSharedPreferences("spendwise_prefs", Context.MODE_PRIVATE)
+        val currentMode = requireContext().resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
+        val isDarkMode = currentMode == Configuration.UI_MODE_NIGHT_YES
+
+        val newMode = if (isDarkMode) {
+            AppCompatDelegate.MODE_NIGHT_NO
+        } else {
+            AppCompatDelegate.MODE_NIGHT_YES
+        }
+
+        sharedPreferences.edit { putInt("theme_mode", newMode) }
+        AppCompatDelegate.setDefaultNightMode(newMode)
+    }
+
+    private fun updateCurrencySubtitle() {
+        val currentLocale = LocaleHelper.getConfiguredLocale(requireContext())
+        val currentCurrencyCode = try {
+            java.util.Currency.getInstance(currentLocale)?.currencyCode
+        } catch (e: Exception) {
+            null
+        }
+        val config = LocaleHelper.getSupportedCurrencies().firstOrNull { it.currencyCode == currentCurrencyCode }
+            ?: LocaleHelper.getSupportedCurrencies().first()
+        binding.currencySubtitle.text = config.displayName
+    }
+
+    private fun showCurrencyPickerDialog() {
+        val currencies = LocaleHelper.getSupportedCurrencies()
+        val currentLocale = LocaleHelper.getConfiguredLocale(requireContext())
+        val currentCurrencyCode = try {
+            java.util.Currency.getInstance(currentLocale)?.currencyCode
+        } catch (e: Exception) {
+            null
+        }
+        val displayNames = currencies.map { it.displayName }.toTypedArray()
+        val currentIndex = currencies.indexOfFirst { it.currencyCode == currentCurrencyCode }
+            .coerceAtLeast(0)
+
+        var selectedIndex = currentIndex
+
+        MaterialAlertDialogBuilder(
+            requireContext(),
+            com.google.android.material.R.style.ThemeOverlay_Material3_MaterialAlertDialog
+        )
+            .setTitle(R.string.change_currency)
+            .setSingleChoiceItems(displayNames, currentIndex) { _, which ->
+                selectedIndex = which
+            }
+            .setPositiveButton(R.string.save) { _, _ ->
+                val chosenConfig = currencies[selectedIndex]
+                if (chosenConfig.locale.toLanguageTag() != currentLocale.toLanguageTag()) {
+                    LocaleHelper.saveLocaleTag(requireContext(), chosenConfig.locale.toLanguageTag())
+                    activity?.recreate()
+                }
+            }
+            .setNegativeButton(R.string.cancel, null)
+            .show()
     }
 
     override fun onDestroyView() {

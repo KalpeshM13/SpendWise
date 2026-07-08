@@ -219,6 +219,77 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
+                    <!-- Change Currency -->
+                    <LinearLayout
+                        android:id="@+id/changeCurrency"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_menu_item_ripple"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingStart="24dp"
+                        android:paddingEnd="20dp"
+                        android:paddingTop="18dp"
+                        android:paddingBottom="18dp">
+
+                        <FrameLayout
+                            android:layout_width="40dp"
+                            android:layout_height="40dp">
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/bg_icon_container" />
+
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_gravity="center"
+                                android:importantForAccessibility="no"
+                                android:src="@drawable/language_24px"
+                                app:tint="@color/brand_primary" />
+
+                        </FrameLayout>
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_weight="1"
+                            android:fontFamily="sans-serif-medium"
+                            android:text="@string/change_currency"
+                            android:textColor="@color/text_primary"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:id="@+id/currencySubtitle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="8dp"
+                            android:fontFamily="sans-serif"
+                            android:textColor="@color/text_secondary"
+                            android:textSize="13sp"
+                            tools:text="United States (USD)" />
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:importantForAccessibility="no"
+                            android:src="@drawable/arrow_forward_ios_24px"
+                            app:tint="@color/text_secondary" />
+
+                    </LinearLayout>
+
+                    <!-- Divider -->
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:background="@color/divider_color" />
+
                     <!-- Manage Categories -->
                     <LinearLayout
                         android:id="@+id/manageCategories"
@@ -269,6 +340,61 @@
                             android:importantForAccessibility="no"
                             android:src="@drawable/arrow_forward_ios_24px"
                             app:tint="@color/text_secondary" />
+
+                    </LinearLayout>
+
+                    <!-- Divider -->
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:background="@color/divider_color" />
+
+                    <!-- Manage Theme -->
+                    <LinearLayout
+                        android:id="@+id/manageTheme"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_menu_item_ripple"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingStart="24dp"
+                        android:paddingEnd="20dp"
+                        android:paddingTop="18dp"
+                        android:paddingBottom="18dp">
+
+                        <FrameLayout
+                            android:layout_width="40dp"
+                            android:layout_height="40dp">
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/bg_icon_container" />
+
+                            <ImageView
+                                android:id="@+id/themeIcon"
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_gravity="center"
+                                android:importantForAccessibility="no"
+                                android:src="@drawable/light_mode_24px"
+                                app:tint="@color/brand_primary" />
+
+                        </FrameLayout>
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_weight="1"
+                            android:fontFamily="sans-serif-medium"
+                            android:text="@string/manage_theme"
+                            android:textColor="@color/text_primary"
+                            android:textSize="15sp" />
 
                     </LinearLayout>
 

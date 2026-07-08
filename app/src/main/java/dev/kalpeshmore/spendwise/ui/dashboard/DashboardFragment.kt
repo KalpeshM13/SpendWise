@@ -20,14 +20,14 @@ import com.github.mikephil.charting.data.PieEntry
 import com.github.mikephil.charting.formatter.PercentFormatter
 import kotlinx.coroutines.launch
 import java.text.NumberFormat
-import java.util.Locale
 import kotlin.collections.map
+import dev.kalpeshmore.spendwise.util.LocaleHelper
 
 class DashboardFragment : Fragment() {
     private var _binding: FragmentDashboardBinding? = null
     private val binding get() = _binding!!
     private val viewModel: DashboardViewModel by viewModels()
-    private val currencyFormatter = NumberFormat.getCurrencyInstance(Locale.getDefault())
+    private lateinit var currencyFormatter: NumberFormat
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentDashboardBinding.inflate(inflater, container, false)
@@ -36,6 +36,8 @@ class DashboardFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        currencyFormatter = LocaleHelper.getCurrencyFormatter(requireContext())
 
         setupPieChart()
         observeDashboardState()

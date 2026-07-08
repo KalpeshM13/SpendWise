@@ -1,6 +1,6 @@
 package dev.kalpeshmore.spendwise.ui.transactions
 
-import android.icu.text.NumberFormat
+import dev.kalpeshmore.spendwise.util.LocaleHelper
 import android.os.Bundle
 import android.view.HapticFeedbackConstants
 import android.view.LayoutInflater
@@ -92,7 +92,7 @@ class TransactionDetailFragment : BottomSheetDialogFragment() {
     private fun bindTransactionData() {
         val dateFormatter = SimpleDateFormat("EEEE, MMMM dd yyyy", Locale.getDefault())
         val timeFormatter = SimpleDateFormat("hh:mm a", Locale.getDefault())
-        val currencyFormatter = NumberFormat.getCurrencyInstance()
+        val currencyFormatter = LocaleHelper.getCurrencyFormatter(requireContext())
 
         val formattedAmount = currencyFormatter.format(transaction.amount)
         binding.tvDetailAmount.text = when (transaction.type) {

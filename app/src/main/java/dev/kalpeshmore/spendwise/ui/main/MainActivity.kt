@@ -8,6 +8,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.ViewModelProvider
+import android.content.Context
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.viewpager2.widget.ViewPager2
 import dev.kalpeshmore.spendwise.R
 import dev.kalpeshmore.spendwise.databinding.ActivityMainBinding
@@ -20,6 +22,10 @@ class MainActivity : AppCompatActivity() {
     private lateinit var viewModel: SpendwiseViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        val sharedPreferences = getSharedPreferences("spendwise_prefs", Context.MODE_PRIVATE)
+        val savedThemeMode = sharedPreferences.getInt("theme_mode", AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
+        AppCompatDelegate.setDefaultNightMode(savedThemeMode)
+
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -42,7 +48,7 @@ class MainActivity : AppCompatActivity() {
             when (item.itemId) {
                 R.id.nav_dashboard -> binding.viewPager.currentItem = 0
                 R.id.nav_transactions -> binding.viewPager.currentItem = 1
-//                R.id.nav_profile -> binding.viewPager.currentItem = 2
+                R.id.nav_profile -> binding.viewPager.currentItem = 2
             }
             true
         }
@@ -53,12 +59,12 @@ class MainActivity : AppCompatActivity() {
                 when (position) {
                     0 -> binding.bottomNavigation.selectedItemId = R.id.nav_dashboard
                     1 -> binding.bottomNavigation.selectedItemId = R.id.nav_transactions
-//                    2 -> binding.bottomNavigation.selectedItemId = R.id.nav_profile
+                    2 -> binding.bottomNavigation.selectedItemId = R.id.nav_profile
                 }
                 binding.appBarText.text = when (position) {
                     0 -> getString(R.string.app_name)
                     1 -> getString(R.string.transactions)
-//                    2 -> getString(R.string.profile)
+                    2 -> getString(R.string.profile)
                     else -> getString(R.string.app_name)
                 }
                 if (position == 2)
@@ -66,6 +72,11 @@ class MainActivity : AppCompatActivity() {
                 else binding.fabAddTransaction.show()
             }
         })
+
+        if (savedInstanceState != null) {
+            val savedTab = savedInstanceState.getInt("current_tab", 0)
+            binding.viewPager.setCurrentItem(savedTab, false)
+        }
     }
 
     private fun setupViewPager() {
@@ -101,5 +112,10 @@ class MainActivity : AppCompatActivity() {
             }
             .setNegativeButton("Cancel", null)
             .show()
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putInt("current_tab", binding.viewPager.currentItem)
     }
 }

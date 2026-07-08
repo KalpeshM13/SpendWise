@@ -56,4 +56,6 @@
     <string name="new_password">New Password</string>
     <string name="confirm_new_password">Confirm New Password</string>
     <string name="forgot_password"><u>Forgot Password?</u></string>
+    <string name="manage_theme">Change Theme</string>
+    <string name="change_currency">Change Currency</string>
 </resources>

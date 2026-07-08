@@ -1,6 +1,5 @@
 package dev.kalpeshmore.spendwise.ui.transactions
 
-import android.icu.text.NumberFormat
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -10,6 +9,7 @@ import dev.kalpeshmore.spendwise.R
 import dev.kalpeshmore.spendwise.data.models.Transaction
 import dev.kalpeshmore.spendwise.data.models.TransactionsType
 import dev.kalpeshmore.spendwise.databinding.ItemTransactionsBinding
+import dev.kalpeshmore.spendwise.util.LocaleHelper
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -25,7 +25,7 @@ class TransactionAdapter(
 
     inner class TransactionViewHolder(private val binding: ItemTransactionsBinding): RecyclerView.ViewHolder(binding.root) {
         private val dateFormatter = SimpleDateFormat("MMMM dd yyyy", Locale.getDefault())
-        private val currencyFormatter = NumberFormat.getCurrencyInstance()
+        private val currencyFormatter = LocaleHelper.getCurrencyFormatter(binding.root.context)
 
         init {
             binding.root.setOnClickListener {
