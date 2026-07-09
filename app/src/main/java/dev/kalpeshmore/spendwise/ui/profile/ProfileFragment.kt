@@ -81,10 +81,11 @@ class ProfileFragment : Fragment() {
         }
 
         updateThemeIcon()
+        updateThemeSubtitle()
 
         binding.manageTheme.setOnClickListener {
             it.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
-            toggleTheme()
+            showThemePickerDialog()
         }
 
         updateCurrencySubtitle()
@@ -310,19 +311,56 @@ class ProfileFragment : Fragment() {
         }
     }
 
-    private fun toggleTheme() {
+    private fun updateThemeSubtitle() {
         val sharedPreferences = requireContext().getSharedPreferences("spendwise_prefs", Context.MODE_PRIVATE)
-        val currentMode = requireContext().resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
-        val isDarkMode = currentMode == Configuration.UI_MODE_NIGHT_YES
+        val savedThemeMode = sharedPreferences.getInt("theme_mode", AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
+        val subtitleRes = when (savedThemeMode) {
+            AppCompatDelegate.MODE_NIGHT_NO -> R.string.theme_light
+            AppCompatDelegate.MODE_NIGHT_YES -> R.string.theme_dark
+            else -> R.string.theme_system
+        }
+        binding.themeSubtitle.text = getString(subtitleRes)
+    }
 
-        val newMode = if (isDarkMode) {
-            AppCompatDelegate.MODE_NIGHT_NO
-        } else {
-            AppCompatDelegate.MODE_NIGHT_YES
+    private fun showThemePickerDialog() {
+        val sharedPreferences = requireContext().getSharedPreferences("spendwise_prefs", Context.MODE_PRIVATE)
+        val currentMode = sharedPreferences.getInt("theme_mode", AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
+
+        val options = arrayOf(
+            getString(R.string.theme_light),
+            getString(R.string.theme_dark),
+            getString(R.string.theme_system)
+        )
+
+        val index = when (currentMode) {
+            AppCompatDelegate.MODE_NIGHT_NO -> 0
+            AppCompatDelegate.MODE_NIGHT_YES -> 1
+            else -> 2
         }
 
-        sharedPreferences.edit { putInt("theme_mode", newMode) }
-        AppCompatDelegate.setDefaultNightMode(newMode)
+        var selectedIndex = index
+
+        MaterialAlertDialogBuilder(
+            requireContext(),
+            com.google.android.material.R.style.ThemeOverlay_Material3_MaterialAlertDialog
+        )
+            .setTitle(R.string.manage_theme)
+            .setSingleChoiceItems(options, index) { _, which ->
+                selectedIndex = which
+            }
+            .setPositiveButton(R.string.save) { _, _ ->
+                val newMode = when (selectedIndex) {
+                    0 -> AppCompatDelegate.MODE_NIGHT_NO
+                    1 -> AppCompatDelegate.MODE_NIGHT_YES
+                    else -> AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM
+                }
+                if (newMode != currentMode) {
+                    sharedPreferences.edit { putInt("theme_mode", newMode) }
+                    AppCompatDelegate.setDefaultNightMode(newMode)
+                }
+            }
+            .setNegativeButton(R.string.cancel, null)
+            .show()
     }
 
     private fun updateCurrencySubtitle() {

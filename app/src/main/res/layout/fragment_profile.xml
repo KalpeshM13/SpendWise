@@ -396,7 +396,26 @@
                             android:textColor="@color/text_primary"
                             android:textSize="15sp" />
 
+                        <TextView
+                            android:id="@+id/themeSubtitle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="8dp"
+                            android:fontFamily="sans-serif"
+                            android:textColor="@color/text_secondary"
+                            android:textSize="13sp"
+                            tools:text="System Default" />
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:importantForAccessibility="no"
+                            android:src="@drawable/arrow_forward_ios_24px"
+                            app:tint="@color/text_secondary" />
+
                     </LinearLayout>
+
+
 
                     <!-- Divider -->
                     <View

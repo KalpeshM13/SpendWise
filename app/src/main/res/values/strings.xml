@@ -58,4 +58,7 @@
     <string name="forgot_password"><u>Forgot Password?</u></string>
     <string name="manage_theme">Change Theme</string>
     <string name="change_currency">Change Currency</string>
+    <string name="theme_light">Light</string>
+    <string name="theme_dark">Dark</string>
+    <string name="theme_system">System Default</string>
 </resources>
