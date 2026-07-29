@@ -14,6 +14,8 @@ SpendWise is a modern, intuitive, and feature-rich personal finance tracker appl
 *   **Custom Category Manager:** Add custom categories directly from the transaction dialogue or manage them in the profile section. Includes pre-populated default categories:
     *   *Income:* Salary, Freelance, Investments
     *   *Expense:* Food & Dining, Transportation, Shopping, Bills & Utilities, Healthcare
+*   **First-Launch Walkthrough Tutorial:** A beautiful slider onboarding experience for new users, detailing the key capabilities of SpendWise.
+*   **Multi-Currency & Locale Support:** Supports customized localization for different countries, managing currency formatting (USD, GBP, INR, JPY, EUR) dynamically via a single source of truth.
 *   **Haptic Feedback & Micro-Interactions:** Premium, tactile app experience with haptic vibrations triggered on crucial actions.
 *   **Edge-to-Edge Design:** Fully immersive system-wide dark and light mode UI matching Google's Material Design 3 specifications.
 
@@ -155,17 +157,21 @@ app/src/main/java/dev/kalpeshmore/spendwise/
 ├── data/                       # Local Data Layer
 │   ├── dao/                    # Room DAOs (TransactionDao, CategoryDao)
 │   ├── database/               # Room DB Configuration & Type Converters
-│   ├── models/                 # Data entities (Transaction, Category, enums)
-│   └── repository/             # Repository layer for database abstractions
+│   ├── models/                 # Data models and structures (Transaction, Category, enums)
+│   └── repository/             # Repository pattern for local database access
 │
-└── ui/                         # User Interface Layer
-    ├── auth/                   # Password & Profile settings fragments
-    ├── dashboard/              # Stats overview & analytical charts
-    ├── dialogs/                # Modals (Add transactions dialog)
-    ├── main/                   # MainActivity, ViewPager configuration
-    ├── profile/                # Profile management & custom category configuration
-    ├── transactions/           # Transaction listing list adapters & filters
-    └── viewModel/              # Shared view models for state management
+├── ui/                         # User Interface Layer
+│   ├── auth/                   # Security features (Password management & Profile settings)
+│   ├── dashboard/              # Home dashboard fragment and pie-chart analytics
+│   ├── dialogs/                # Modals (Transaction inputs and month picker)
+│   ├── main/                   # Entry points (LauncherActivity, MainActivity & viewpager adapters)
+│   ├── profile/                # Profile views & custom category management
+│   ├── transactions/           # Transaction history lists, details, and filtering
+│   ├── tutorial/               # First-launch walkthrough and onboarding slides
+│   └── viewModel/              # Shared ViewModels for state handling
+│
+└── util/                       # Helper Utilities
+    └── LocaleHelper.kt         # Custom localization and language manager
 ```
 
 ---
