@@ -1,64 +1,85 @@
 <resources>
-    <string name="app_name">SpendWise</string>
-    <string name="app_version">Version: %1$s</string>
-    <string name="income">Income</string>
-    <string name="expense">Expense</string>
-    <string name="all">All</string>
 
-    <!--    Navigation Related-->
+    <!-- App Information -->
+    <string name="app_name">SpendWise</string>
+    <string name="app_tagline">Every Expense. Every Insight. Every Day.</string>
+    <string name="app_version">Version: %1$s</string>
+
+    <!-- Common -->
+    <string name="all">All</string>
+    <string name="cancel">Cancel</string>
+    <string name="save">Save</string>
+    <string name="previous">Previous</string>
+    <string name="next">Next</string>
+
+    <!-- Navigation -->
     <string name="tab_dashboard">Dashboard</string>
     <string name="tab_transactions">Transactions</string>
     <string name="tab_profile">Profile</string>
 
-    <!--    Dashboard Strings-->
+    <!-- Dashboard -->
     <string name="current_balance">Current Balance</string>
     <string name="total_income">Total Income</string>
     <string name="total_expense">Total Expense</string>
     <string name="expense_breakdown">Expense Breakdown</string>
 
-    <!--    Transaction Related-->
+    <!-- Transaction -->
     <string name="transactions">Transactions</string>
+    <string name="transaction_details">Transaction Details</string>
+    <string name="new_transaction">New Transaction</string>
     <string name="add_transaction">Add Transaction</string>
     <string name="delete_transaction">Delete Transaction</string>
+
+    <!-- Transaction Fields -->
     <string name="amount">Amount</string>
     <string name="category">Category</string>
     <string name="date">Date</string>
+    <string name="time">Time</string>
     <string name="type">Type</string>
     <string name="description">Description</string>
 
-    <!--    Category Related-->
+    <!-- Transaction Types -->
+    <string name="income">Income</string>
+    <string name="expense">Expense</string>
 
-    <!--    Dialog Buttons-->
-    <string name="cancel">Cancel</string>
-    <string name="save">Save</string>
+    <!-- Empty States -->
+    <string name="no_transactions">No transactions. Add one!</string>
 
-    <!--    Error Messages-->
-    <string name="error_invalid_amount">Invalid Amount</string>
-    <string name="transaction_details">Transaction Details</string>
-    <string name="new_transaction">New Transaction</string>
-    <string name="time">Time</string>
+    <!-- Category Management -->
+    <string name="manage_categories">Manage Categories</string>
+    <string name="edit_category">Edit Category</string>
+    <string name="delete_category">Delete Category</string>
+
+    <!-- Profile -->
     <string name="profile">Profile</string>
     <string name="android_user">Android User</string>
     <string name="user_email">User Email</string>
-    <string name="manage_categories">Manage Categories</string>
     <string name="edit_profile">Edit Profile</string>
-    <string name="select_month">Select Month</string>
-    <string name="pick_month">Pick a Month</string>
-    <string name="previous_year">Previous year</string>
-    <string name="next_year">Next year</string>
-    <string name="no_transactions">No transactions. Add one!</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="edit_category">Edit Category</string>
-    <string name="delete_category">Delete Category</string>
+
+    <!-- Security -->
     <string name="change_password">Change Password</string>
     <string name="current_password">Current Password</string>
     <string name="new_password">New Password</string>
     <string name="confirm_new_password">Confirm New Password</string>
     <string name="forgot_password"><u>Forgot Password?</u></string>
+
+    <!-- Appearance & Settings -->
     <string name="manage_theme">Change Theme</string>
-    <string name="change_currency">Change Currency</string>
     <string name="theme_light">Light</string>
     <string name="theme_dark">Dark</string>
     <string name="theme_system">System Default</string>
+    <string name="change_currency">Change Currency</string>
+
+    <!-- Date Picker -->
+    <string name="select_month">Select Month</string>
+    <string name="pick_month">Pick a Month</string>
+    <string name="previous_year">Previous year</string>
+    <string name="next_year">Next year</string>
+
+    <!-- Error Messages -->
+    <string name="error_invalid_amount">Invalid Amount</string>
+
+    <!-- Placeholder-->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>
