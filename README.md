@@ -10,6 +10,7 @@ SpendWise is a modern, intuitive, and feature-rich personal finance tracker appl
 *   **Interactive Visual Analytics:** Dynamic category-wise expense breakdown visualized using interactive pie charts (powered by `MPAndroidChart`).
 *   **Transaction Filtering:** View your complete transaction history sorted by date and filter on-the-fly by *All*, *Income*, or *Expense* types.
 *   **Transaction Details:** View comprehensive details of any transaction (amount, description, category, type, exact date, and time) in an elegant bottom-sheet view.
+*   **User Authentication:** Secure email/password login integrated with Firebase, ensuring personalized data tracking and cross-device cloud synchronization.
 *   **Transaction Management:** Quickly add new transactions or delete existing ones with instant state updates.
 *   **Custom Category Manager:** Add custom categories directly from the transaction dialogue or manage them in the profile section. Includes pre-populated default categories:
     *   *Income:* Salary, Freelance, Investments
@@ -40,7 +41,7 @@ SpendWise is developed using standard Native Android components and follows the 
 If you just want to use **SpendWise** on your Android device without building it from source, follow these simple steps:
 
 1.  **Download the APK:**
-    *   On your Android device, open a web browser and navigate to the [Releases](https://github.com/KalpeshM13/SpendWise/releases/tag/v1.0.0) section of this repository.
+    *   On your Android device, open a web browser and navigate to the [Releases](https://github.com/KalpeshM13/SpendWise/releases/tag/v1.0.2) section of this repository.
     *   Download the latest `.apk` file from the **Assets** section of the latest release.
 2.  **Enable Unknown Sources (if required):**
     *   If you haven't installed apps outside the Google Play Store before, your device might prompt you to allow installations from "Unknown Sources" or your web browser/file manager.
