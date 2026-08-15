@@ -143,69 +143,69 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <!-- Change Password Card -->
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="24dp"
-                app:cardBackgroundColor="@color/card_background"
-                app:cardCornerRadius="24dp"
-                app:cardElevation="0dp"
-                app:strokeColor="@color/border_color"
-                app:strokeWidth="1dp">
+<!--            <com.google.android.material.card.MaterialCardView-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginBottom="24dp"-->
+<!--                app:cardBackgroundColor="@color/card_background"-->
+<!--                app:cardCornerRadius="24dp"-->
+<!--                app:cardElevation="0dp"-->
+<!--                app:strokeColor="@color/border_color"-->
+<!--                app:strokeWidth="1dp">-->
 
-                <LinearLayout
-                    android:id="@+id/changePassword"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/bg_menu_item_ripple"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    android:paddingStart="24dp"
-                    android:paddingEnd="20dp"
-                    android:paddingTop="18dp"
-                    android:paddingBottom="18dp">
+<!--                <LinearLayout-->
+<!--                    android:id="@+id/changePassword"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:background="@drawable/bg_menu_item_ripple"-->
+<!--                    android:clickable="true"-->
+<!--                    android:focusable="true"-->
+<!--                    android:gravity="center_vertical"-->
+<!--                    android:orientation="horizontal"-->
+<!--                    android:paddingStart="24dp"-->
+<!--                    android:paddingEnd="20dp"-->
+<!--                    android:paddingTop="18dp"-->
+<!--                    android:paddingBottom="18dp">-->
 
-                    <FrameLayout
-                        android:layout_width="40dp"
-                        android:layout_height="40dp">
+<!--                    <FrameLayout-->
+<!--                        android:layout_width="40dp"-->
+<!--                        android:layout_height="40dp">-->
 
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:background="@drawable/bg_icon_container" />
+<!--                        <View-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="match_parent"-->
+<!--                            android:background="@drawable/bg_icon_container" />-->
 
-                        <ImageView
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:layout_gravity="center"
-                            android:importantForAccessibility="no"
-                            android:src="@drawable/lock_24px"
-                            app:tint="@color/brand_primary" />
+<!--                        <ImageView-->
+<!--                            android:layout_width="20dp"-->
+<!--                            android:layout_height="20dp"-->
+<!--                            android:layout_gravity="center"-->
+<!--                            android:importantForAccessibility="no"-->
+<!--                            android:src="@drawable/lock_24px"-->
+<!--                            app:tint="@color/brand_primary" />-->
 
-                    </FrameLayout>
+<!--                    </FrameLayout>-->
 
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:layout_weight="1"
-                        android:fontFamily="sans-serif-medium"
-                        android:text="@string/change_password"
-                        android:textColor="@color/text_primary"
-                        android:textSize="15sp" />
+<!--                    <TextView-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginStart="16dp"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:fontFamily="sans-serif-medium"-->
+<!--                        android:text="@string/change_password"-->
+<!--                        android:textColor="@color/text_primary"-->
+<!--                        android:textSize="15sp" />-->
 
-                    <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:importantForAccessibility="no"
-                        android:src="@drawable/arrow_forward_ios_24px"
-                        app:tint="@color/text_secondary" />
+<!--                    <ImageView-->
+<!--                        android:layout_width="20dp"-->
+<!--                        android:layout_height="20dp"-->
+<!--                        android:importantForAccessibility="no"-->
+<!--                        android:src="@drawable/arrow_forward_ios_24px"-->
+<!--                        app:tint="@color/text_secondary" />-->
 
-                </LinearLayout>
+<!--                </LinearLayout>-->
 
-            </com.google.android.material.card.MaterialCardView>
+<!--            </com.google.android.material.card.MaterialCardView>-->
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

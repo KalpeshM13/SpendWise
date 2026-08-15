@@ -90,10 +90,10 @@ class EditProfileFragment : BottomSheetDialogFragment() {
             }
         }
 
-        binding.changePassword.setOnClickListener {
-            it.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
-            ChangePasswordFragment().show(parentFragmentManager, "ChangePasswordFragment")
-        }
+//        binding.changePassword.setOnClickListener {
+//            it.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
+//            ChangePasswordFragment().show(parentFragmentManager, "ChangePasswordFragment")
+//        }
 
         binding.btnEditAvatar.setOnClickListener {
             it.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
