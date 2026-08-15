@@ -34,6 +34,12 @@ import android.content.res.Configuration
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.edit
 import dev.kalpeshmore.spendwise.util.LocaleHelper
+import com.google.firebase.auth.FirebaseAuth
+import dev.kalpeshmore.spendwise.data.firebase.FirebaseService
+import dev.kalpeshmore.spendwise.ui.auth.LoginActivity
+import android.content.Intent
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 class ProfileFragment : Fragment() {
 
@@ -61,6 +67,8 @@ class ProfileFragment : Fragment() {
             .getPackageInfo(requireContext().packageName, 0)
             .versionName
         binding.appVersion.text = getString(R.string.app_version, versionName)
+
+        loadUserProfile()
 
         updateMonthButtonText()
         setupPieChart()
@@ -94,6 +102,46 @@ class ProfileFragment : Fragment() {
             it.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
             showCurrencyPickerDialog()
         }
+
+        binding.logout.setOnClickListener {
+            it.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
+            FirebaseAuth.getInstance().signOut()
+            val intent = Intent(requireContext(), LoginActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
+        }
+    }
+
+    private fun loadUserProfile() {
+        viewLifecycleOwner.lifecycleScope.launch(Dispatchers.IO) {
+            val profile = FirebaseService().getUserProfile()
+            withContext(Dispatchers.Main) {
+                if (_binding == null) return@withContext
+                if (profile != null) {
+                    binding.profileUsername.text = profile.name.ifEmpty { "User" }
+                    binding.profileEmail.text = profile.email.ifEmpty {
+                        FirebaseAuth.getInstance().currentUser?.phoneNumber ?: "Welcome back"
+                    }
+                    val avatarRes = if (profile.avatar == "boy") {
+                        R.drawable.boy_avatar
+                    } else {
+                        R.drawable.girl_avatar
+                    }
+                    binding.profileImage.setImageResource(avatarRes)
+                } else {
+                    val user = FirebaseAuth.getInstance().currentUser
+                    if (user != null) {
+                        binding.profileUsername.text = user.displayName ?: "User"
+                        binding.profileEmail.text = user.email ?: user.phoneNumber ?: "Welcome back"
+                    }
+                }
+            }
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        loadUserProfile()
     }
 
     private fun updateMonthButtonText() {

@@ -26,6 +26,9 @@ interface CategoryDao {
     """)
     fun getCategoryTotal(type: TransactionsType, startDate: Long = 0): Flow<List<CategoryTotal>>
 
+    @Query("DELETE FROM categories")
+    suspend fun deleteAll()
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(category: Category)
 

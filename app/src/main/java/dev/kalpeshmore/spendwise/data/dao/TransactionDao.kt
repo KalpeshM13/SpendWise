@@ -3,6 +3,7 @@ package dev.kalpeshmore.spendwise.data.dao
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import dev.kalpeshmore.spendwise.data.models.CategoryTotal
 import dev.kalpeshmore.spendwise.data.models.Transaction
@@ -47,7 +48,10 @@ interface TransactionDao {
         endDate: Long
     ): Flow<List<CategoryTotal>>
 
-    @Insert
+    @Query("DELETE FROM transactions")
+    suspend fun deleteAll()
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(transaction: Transaction)
 
     @Delete

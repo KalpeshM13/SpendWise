@@ -32,4 +32,8 @@ class SpendwiseViewModel(application: Application): AndroidViewModel(application
     fun addCategory(category: Category) = viewModelScope.launch {
         repository.addCategory(category)
     }
+
+    fun syncFromCloud() = viewModelScope.launch {
+        repository.syncFromCloud()
+    }
 }

@@ -9,6 +9,8 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import dev.kalpeshmore.spendwise.R
 import dev.kalpeshmore.spendwise.ui.tutorial.TutorialActivity
+import dev.kalpeshmore.spendwise.ui.auth.LoginActivity
+import com.google.firebase.auth.FirebaseAuth
 
 class LauncherActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,8 +36,10 @@ class LauncherActivity : AppCompatActivity() {
 
         if (firstLaunch) {
             startActivity(Intent(this, TutorialActivity::class.java))
-        } else {
+        } else if (FirebaseAuth.getInstance().currentUser != null) {
             startActivity(Intent(this, MainActivity::class.java))
+        } else {
+            startActivity(Intent(this, LoginActivity::class.java))
         }
 
         finish()

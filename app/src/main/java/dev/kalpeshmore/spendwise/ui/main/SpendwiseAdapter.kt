@@ -12,11 +12,11 @@ class SpendwiseAdapter(activity: FragmentActivity): FragmentStateAdapter(activit
         return when(position) {
             0 -> DashboardFragment()
             1 -> TransactionsFragment()
-//            2 -> ProfileFragment()
+            2 -> ProfileFragment()
             else -> throw IllegalArgumentException("Invalid Position $position")
         }
     }
 
-    override fun getItemCount(): Int = 2
+    override fun getItemCount(): Int = 3
 
 }

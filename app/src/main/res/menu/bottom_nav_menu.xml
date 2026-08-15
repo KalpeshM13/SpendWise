@@ -5,13 +5,23 @@
         android:icon="@drawable/ic_nav_home"
         android:title="@string/tab_dashboard" />
 
+<!--    <item-->
+<!--        android:id="@+id/nav_groups"-->
+<!--        android:icon="@drawable/ic_nav_profile"-->
+<!--        android:title="@string/tab_groups" />-->
+
+<!--    <item-->
+<!--        android:id="@+id/nav_activity"-->
+<!--        android:icon="@drawable/ic_nav_profile"-->
+<!--        android:title="@string/tab_activity" />-->
+
     <item
         android:id="@+id/nav_transactions"
         android:icon="@drawable/ic_nav_transaction"
         android:title="@string/tab_transactions" />
 
-<!--    <item-->
-<!--        android:id="@+id/nav_profile"-->
-<!--        android:icon="@drawable/ic_nav_profile"-->
-<!--        android:title="@string/tab_profile" />-->
+    <item
+        android:id="@+id/nav_profile"
+        android:icon="@drawable/ic_nav_profile"
+        android:title="@string/tab_profile" />
 </menu>

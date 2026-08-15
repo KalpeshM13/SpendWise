@@ -12,7 +12,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.viewpager2.widget.ViewPager2
 import com.tbuonomo.viewpagerdotsindicator.WormDotsIndicator
 import dev.kalpeshmore.spendwise.R
-import dev.kalpeshmore.spendwise.ui.main.MainActivity
+import dev.kalpeshmore.spendwise.ui.auth.LoginActivity
 import androidx.core.content.edit
 import com.google.android.material.button.MaterialButton
 import android.graphics.Outline
@@ -84,7 +84,7 @@ class TutorialActivity : AppCompatActivity() {
                     .edit {
                         putBoolean("firstLaunch", false)
                     }
-                startActivity(Intent(this, MainActivity::class.java))
+                startActivity(Intent(this, LoginActivity::class.java))
                 finish()
             }
 

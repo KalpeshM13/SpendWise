@@ -16,6 +16,8 @@
     <string name="tab_dashboard">Dashboard</string>
     <string name="tab_transactions">Transactions</string>
     <string name="tab_profile">Profile</string>
+    <string name="tab_groups">Groups</string>
+    <string name="tab_activity">Activity</string>
 
     <!-- Dashboard -->
     <string name="current_balance">Current Balance</string>

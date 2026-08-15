@@ -37,6 +37,16 @@ class MainActivity : AppCompatActivity() {
         }
         viewModel = ViewModelProvider(this)[SpendwiseViewModel::class.java]
 
+        viewModel.syncFromCloud()
+
+        binding.swipeRefreshLayout.setOnRefreshListener {
+            viewModel.syncFromCloud().invokeOnCompletion {
+                runOnUiThread {
+                    binding.swipeRefreshLayout.isRefreshing = false
+                }
+            }
+        }
+
         setupViewPager()
         setupFab()
         setupBackPressHandling()
@@ -48,7 +58,7 @@ class MainActivity : AppCompatActivity() {
             when (item.itemId) {
                 R.id.nav_dashboard -> binding.viewPager.currentItem = 0
                 R.id.nav_transactions -> binding.viewPager.currentItem = 1
-//                R.id.nav_profile -> binding.viewPager.currentItem = 2
+                R.id.nav_profile -> binding.viewPager.currentItem = 2
             }
             true
         }
@@ -59,12 +69,12 @@ class MainActivity : AppCompatActivity() {
                 when (position) {
                     0 -> binding.bottomNavigation.selectedItemId = R.id.nav_dashboard
                     1 -> binding.bottomNavigation.selectedItemId = R.id.nav_transactions
-//                    2 -> binding.bottomNavigation.selectedItemId = R.id.nav_profile
+                    2 -> binding.bottomNavigation.selectedItemId = R.id.nav_profile
                 }
                 binding.appBarText.text = when (position) {
                     0 -> getString(R.string.app_name)
                     1 -> getString(R.string.transactions)
-//                    2 -> getString(R.string.profile)
+                    2 -> getString(R.string.profile)
                     else -> getString(R.string.app_name)
                 }
                 if (position == 2)

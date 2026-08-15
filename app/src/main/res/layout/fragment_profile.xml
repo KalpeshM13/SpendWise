@@ -415,8 +415,6 @@
 
                     </LinearLayout>
 
-
-
                     <!-- Divider -->
                     <View
                         android:layout_width="match_parent"
@@ -475,6 +473,60 @@
                             android:importantForAccessibility="no"
                             android:src="@drawable/arrow_forward_ios_24px"
                             app:tint="@color/text_secondary" />
+
+                    </LinearLayout>
+
+                    <!-- Divider -->
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:background="@color/divider_color" />
+
+                    <!-- Logout -->
+                    <LinearLayout
+                        android:id="@+id/logout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_menu_item_ripple"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingStart="24dp"
+                        android:paddingEnd="20dp"
+                        android:paddingTop="18dp"
+                        android:paddingBottom="18dp">
+
+                        <FrameLayout
+                            android:layout_width="40dp"
+                            android:layout_height="40dp">
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/bg_icon_container" />
+
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_gravity="center"
+                                android:importantForAccessibility="no"
+                                android:src="@drawable/arrow_forward_ios_24px"
+                                app:tint="@color/brand_primary" />
+
+                        </FrameLayout>
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_weight="1"
+                            android:fontFamily="sans-serif-medium"
+                            android:text="Logout"
+                            android:textColor="@color/destructive_red"
+                            android:textSize="15sp" />
 
                     </LinearLayout>
 
